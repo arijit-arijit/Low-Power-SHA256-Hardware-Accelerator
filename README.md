@@ -1,6 +1,6 @@
 # Low-Power SHA-256 Hardware Accelerator
 
-A hardware implementation of the SHA-256 compression algorithm using SystemVerilog, followed by synthesis, timing analysis and physical design using the SKY130 technology.
+A hardware implementation of the SHA-256 compression algorithm using Verilog and SystemVerilog, followed by synthesis, timing analysis and physical design using the SKY130 technology.
 
 The project explores RTL optimization, verification and ASIC implementation using an open-source EDA toolchain.
 
