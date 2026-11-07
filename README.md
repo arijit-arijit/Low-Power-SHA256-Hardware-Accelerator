@@ -70,7 +70,7 @@ The final gate-level check matched 20 out of 20 tested block digests against ind
 
 ## Tools Used
 
-- SystemVerilog
+- verilog/SystemVerilog
 - Icarus Verilog
 - Yosys
 - ABC
