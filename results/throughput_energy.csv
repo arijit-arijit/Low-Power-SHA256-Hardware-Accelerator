@@ -1,0 +1,4 @@
+run,clock_ns,cycles_per_block,latency_ns,throughput_Mbps,power_mW,energy_nJ_per_block
+Z_13p50,13.5,67,904.5,566.06,16.9,15.29
+Z_13p60,13.6,67,911.2,561.9,16.8,15.31
+Z_13p70,13.7,67,917.9,557.8,16.8,15.42

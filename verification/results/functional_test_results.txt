@@ -1,0 +1,22 @@
+# Functional test results (copied from saved logs in verification/results/functional_logs)
+## tb_prefix_add32.log
+PASS: prefix_add32, 200000 random vectors plus directed cases
+## tb_sha256_core.log
+PASS reset aborts a block; core then computes a correct digest
+checks run: 751
+TB_RESULT: PASS (all checks)
+## tb_sha256_ctrl.log
+checks run: 777
+TB_RESULT: PASS (all checks)
+## tb_sha256_k_rom.log
+PASS X in idx gives X on k
+checks run: 385
+TB_RESULT: PASS (all checks)
+## tb_sha256_msg_sched.log
+PASS reload mid-block restarts at W[0]
+checks run: 406
+TB_RESULT: PASS (all checks)
+## tb_sha256_round.log
+PASS abc round 1
+PASS abc round 0 repeated
+TB_RESULT: PASS (all checks)

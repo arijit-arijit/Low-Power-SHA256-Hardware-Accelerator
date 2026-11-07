@@ -1,0 +1,5 @@
+run,method,total_mW,sequential_mW,combinational_mW,notes
+Z_13p50,OpenSTA read_vcd + nom SPEF (tt 1.8V 25C) 20-block gate-level sim,16.9,6.48,4.50,simulation-based estimate; remainder is clock network/other groups
+Z_13p60,same,16.8,6.46,4.47,same
+Z_13p70,same,16.8,6.44,4.43,same
+Z_13p50,OpenLane vectorless default activity,65.3,n/a,n/a,pessimistic default-activity number; NOT comparable to vector-based

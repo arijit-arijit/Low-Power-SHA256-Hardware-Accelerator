@@ -1,0 +1,16 @@
+# simulation / build products
+build/
+obj_dir/
+*.vcd
+*.fst
+*.vvp
+*.o
+# OpenLane run directories (keep only curated reports)
+runs/
+*.odb
+*.spef
+# editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+__pycache__/

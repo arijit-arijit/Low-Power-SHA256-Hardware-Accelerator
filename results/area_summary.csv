@@ -1,0 +1,5 @@
+stage,design,area_um2,basis,note
+synthesis_A,A,67457.1968,Yosys+ABC SKY130 HD tt_025C_1v80 chip area,pre-layout
+synthesis_C,C,71343.4240,same,pre-layout
+synthesis_E2,E2,71715.0304,same,pre-layout
+post_route_Z,E2,134637,OpenLane design__instance__area__stdcell,post-route; includes timing repair buffers/taps/etc. Breakdown UNVERIFIED

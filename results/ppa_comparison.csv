@@ -1,0 +1,5 @@
+design,description,tag,generic_cells,mapped_cells,area_um2,flip_flops,abc_delay_ps,abc_target_ps,abc_estimate_met,source
+A,pre-CSA baseline,(none),6572,8871,67457.1968,1322,11884.06,10000,no,synthesis/reports/baseline/designA_precsa_v1/summary.txt
+B,CSA round/schedule adders,baseline-csa-v1,7646,9374,71315.8976,1322,10057.63,10000,no,synthesis/reports/optimized/designB_csa_v1/summary.txt
+C,B + Sklansky prefix adder (digest accumulate),opt-prefix-v1,8198,9509,71343.4240,1322,9091.20,10000,yes,synthesis/reports/optimized/designC_opt_prefix_v1/summary.txt
+E2,C + prefix adders for round a_next/e_next (final RTL),e2-prefix-round-v1,8334,9662,71715.0304,1322,9972.04,10000,yes,synthesis/reports/final/designE2_round_prefix_v1/summary.txt

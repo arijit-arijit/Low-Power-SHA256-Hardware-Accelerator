@@ -1,0 +1,10 @@
+# Gate-level 20-block results (copied from saved pw_sim.log)
+## Z_13p50
+cycles per block (start to start) = 67
+TB_RESULT: PASS (20 blocks match golden)
+## Z_13p60
+cycles per block (start to start) = 67
+TB_RESULT: PASS (20 blocks match golden)
+## Z_13p70
+cycles per block (start to start) = 67
+TB_RESULT: PASS (20 blocks match golden)

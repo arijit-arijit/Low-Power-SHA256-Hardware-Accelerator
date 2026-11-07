@@ -1,0 +1,5 @@
+run,implementation_sdc_ns,signoff_sdc_ns,setup_ws_ns,hold_ws_ns,limiting_setup_corner,antenna_violating_nets,magic_drc,klayout_drc,lvs_errors,slew_violations,cap_violations,source
+Z_13p50,13.2,13.5,0.02743938,0.05018697,max_ss_100C_1v60,0,0,0,0,0,0,final/metrics.csv
+Z_13p60,13.2,13.6,0.12743940,0.05018697,max_ss_100C_1v60,0,0,0,0,0,0,final/metrics.csv
+Z_13p70,13.2,13.7,0.22743941,0.05018697,max_ss_100C_1v60,0,0,0,0,0,0,final/metrics.csv
+U1 (same layout re-checked at 13.2 ns),13.2,13.2,-0.273,n/a,max_ss_100C_1v60,n/a,n/a,n/a,n/a,n/a,n/a,run U1 evidence (setup FAILS)
