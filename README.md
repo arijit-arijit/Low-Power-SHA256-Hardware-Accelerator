@@ -1,66 +1,112 @@
-# Low-Power SHA-256 Hardware Accelerator — RTL, PPA Exploration and SKY130 ASIC Implementation
+# Low-Power SHA-256 Hardware Accelerator
 
-An iterative, **block-level** SHA-256 compression core written in SystemVerilog, verified against known-answer vectors and a C reference model, synthesized with Yosys/ABC, and taken through a complete OpenLane 2 / OpenROAD flow on the SKY130 HD library, ending in a DRC-, LVS- and antenna-clean layout.
+A hardware implementation of the SHA-256 compression algorithm using SystemVerilog, followed by synthesis, timing analysis and physical design using the SKY130 technology.
 
-> **Scope, stated plainly.** The core accepts one **already-padded 512-bit block** plus a 256-bit chaining value (`h_in`). It does **not** pad messages, sequence multiple blocks, or supply the initial hash values; the caller does. "Low-power" in the title describes the project goal. Measured power is a **simulation-based estimate** (see below) and no silicon was fabricated or measured.
+The project explores RTL optimization, verification and ASIC implementation using an open-source EDA toolchain.
 
-## Headline results (all from tool output; see `results/` and `docs/`)
+## Chip Layout
 
-Primary candidate: **`Z_13p60`**. Alternative with higher throughput and thinner margin: `Z_13p50`.
+<p align="center">
+  <img src="images/chip_render/elevated.png" width="80%" alt="3D render of the SHA-256 accelerator">
+</p>
 
-| Item | Z_13p60 (primary) | Z_13p50 (alternative) | Source / method |
-|---|---|---|---|
-| Architecture | 1 round/clock, 67 cycles/block | same | gate-level sim log |
-| Post-route std-cell area | 134,637 µm² | 134,637 µm² | OpenLane `design__instance__area__stdcell` |
-| Signoff clock | 13.6 ns (73.5 MHz) | 13.5 ns (74.1 MHz) | 9-corner post-route STA |
-| Worst setup slack (`max_ss_100C_1v60`) | +0.127 ns | +0.027 ns | OpenLane metrics |
-| Worst hold slack (`min_ff_n40C_1v95`) | +0.050 ns | +0.050 ns | OpenLane metrics |
-| Throughput | 561.9 Mbit/s | 566.06 Mbit/s | 512 b / (67 x clock) |
-| Power | 16.8 mW | 16.9 mW | OpenSTA `read_vcd`, nom SPEF, tt/1.8 V/25 °C, 20 blocks |
-| Energy per block | 15.31 nJ | 15.29 nJ | power x 67 x clock |
-| DRC / LVS / antenna | 0 / 0 / 0 | 0 / 0 / 0 | Magic+KLayout / Netgen / OpenROAD |
-| Gate-level functional check | 20/20 PASS | 20/20 PASS | `pw_sim.log` |
+<p align="center">
+  <img src="images/physical_design/Z_13p60_2d_full.png" width="80%" alt="2D physical layout of the SHA-256 accelerator">
+</p>
 
-**Both runs are the same layout** (implemented with a 13.2 ns SDC) signed off at different clocks. That layout fails setup by −0.273 ns if checked at 13.2 ns, so the timing claims above hold only for the stated signoff clocks. Details in `docs/timing_analysis.md`.
+## Architecture
 
-## Design lineage (pre-layout synthesis, Yosys 0.33 + ABC, SKY130 HD tt_025C_1v80)
+The accelerator uses an iterative architecture, performing one SHA-256 compression round per clock cycle.
 
-| Design | Change | Area (µm²) | ABC delay estimate (ps) |
-|---|---|---|---|
-| A | pre-CSA baseline | 67,457.2 | 11,884.06 |
-| B | carry-save adders | 71,315.9 | 10,057.63 |
-| C | + Sklansky prefix adder (digest accumulate) | 71,343.4 | 9,091.20 |
-| E2 | + prefix adders on round `a_next`/`e_next` (final RTL) | 71,715.0 | 9,972.04 |
+Main RTL modules:
 
-C improves the ABC delay estimate by 23.50% versus A for +5.76% area. **E2 has a worse ABC estimate than C.** E2 is the final RTL, but the evidence for why it was chosen over C is incomplete; see `docs/optimization.md`. ABC numbers are estimates, not static timing analysis.
+- `sha256_core.sv` – Top-level module.
+- `sha256_ctrl.sv` – Controller and FSM.
+- `sha256_round.sv` – SHA-256 round operations.
+- `sha256_msg_sched.sv` – Message schedule generation.
+- `sha256_k_rom.sv` – SHA-256 round constants.
+- `prefix_add32.sv` – 32-bit prefix adder.
 
-## Repository layout
+The core accepts a pre-padded 512-bit message block and a 256-bit initial chaining value. Message padding and block sequencing are handled externally.
 
+## Implementation Results
+
+The design was synthesized using Yosys and ABC and taken through the OpenLane 2 physical-design flow using the SKY130 HD library.
+
+The following are the two final candidates:
+
+| Metric | Z_13p60 | Z_13p50 |
+|---|---:|---:|
+| Signoff clock | 13.6 ns | 13.5 ns |
+| Setup slack | +0.127 ns | +0.027 ns |
+| Hold slack | +0.050 ns | +0.050 ns |
+| Cell area | 134,637 µm² | 134,637 µm² |
+| Sustained power | 16.8 mW | 16.9 mW |
+| Energy per block | 15.31 nJ | 15.29 nJ |
+| Antenna nets | 0 | 0 |
+| DRC / LVS | 0 / 0 | 0 / 0 |
+
+Z_13p60 is the primary candidate because it has a larger setup margin. Z_13p50 provides slightly higher throughput at a tighter timing margin.
+
+The reported throughput is approximately 561.9 Mbit/s for Z_13p60.
+
+The timing results are specific to their stated signoff constraints. The implemented layout has a reported negative setup slack of approximately -0.273 ns when checked at its 13.2 ns implementation constraint.
+
+Power values are simulation-based estimates, not measurements from fabricated silicon.
+
+## Verification
+
+The design was tested using SystemVerilog testbenches and a C-based SHA-256 reference model.
+
+Verification includes:
+
+- Individual RTL module testing.
+- SHA-256 core testing.
+- Message scheduler testing.
+- Controller and datapath testing.
+- Gate-level functional verification.
+
+The final gate-level check matched 20 out of 20 tested block digests against independently recomputed SHA-256 results.
+
+## Tools Used
+
+- SystemVerilog
+- Icarus Verilog
+- Yosys
+- ABC
+- OpenSTA
+- OpenLane 2
+- OpenROAD
+- SKY130 HD PDK
+- Magic
+- Netgen
+- KLayout
+- GTKWave
+
+## Repository Structure
+
+```text
+rtl/              SystemVerilog source files
+verification/     Testbenches, vectors and reference model
+synthesis/        Synthesis scripts, reports and netlists
+physical_design/  OpenLane configurations and physical-design results
+results/          PPA comparison and final results
+images/            Architecture and chip layout images
+docs/               Project documentation
+scripts/            Utility scripts
 ```
-rtl/               six synthesizable SystemVerilog modules
-verification/      testbenches, vectors, C reference model, logs, power flow
-synthesis/         Yosys/ABC scripts, constraints, reports, netlist
-physical_design/   OpenLane configs, SDC, per-run reports, final layout files
-results/           CSV summaries and final_results.md
-images/            diagrams, charts, layout plots, 3D renders
-docs/              architecture, RTL, verification, synthesis, timing, PD, power, limitations
-scripts/           helper scripts
-```
 
-## Reproduce
+## Running Verification
+
+From the project root:
 
 ```bash
-cd verification/scripts && make test        # unit + core tests (Icarus Verilog)
-bash ../../scripts/run_all_tests.sh         # same, logged to verification/results/
-bash ../../scripts/generate_ppa_summary.sh  # re-derive tables from metrics files
+cd verification/scripts
+make test
 ```
-Synthesis and OpenLane flows need Yosys 0.33, OpenSTA, OpenLane 2.3.10 and the SKY130 PDK; see `docs/references/tool_versions.md`.
 
-## Honest notes
-
-* Golden digests for the 20-block power test were produced by this project's RTL simulation, then independently confirmed with a separate SHA-256 implementation during publication review.
-* Post-route area is about 1.9x synthesis area; the breakdown (timing-repair buffers, tap/fill, clock tree) has not been itemised here.
-* Die is 900x900 µm at 17.3% utilization, chosen to ease routing/timing, not to minimise area.
+The synthesis and physical-design flows require the corresponding EDA tools and SKY130 PDK. Refer to `docs/references/tool_versions.md` for tool versions.
 
 ## License
-MIT. See `LICENSE`.
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
