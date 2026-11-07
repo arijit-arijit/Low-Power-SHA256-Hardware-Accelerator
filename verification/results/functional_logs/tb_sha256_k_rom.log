@@ -1,0 +1,7 @@
+PASS all 64 constants, ascending order
+PASS all 64 constants, descending order
+PASS 256 random-order lookups
+PASS X in idx gives X on k
+checks run: 385
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_k_rom.sv:76: $finish called at 385000 (1ps)

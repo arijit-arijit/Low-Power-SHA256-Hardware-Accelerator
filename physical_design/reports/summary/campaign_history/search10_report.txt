@@ -1,0 +1,81 @@
+=====BEGIN=====
+23:20:10 seeds: [(13.2, 60)]
+23:20:10 PROPOSE period=13.6 threshold=60
+23:20:10 START W_13p6_T60
+23:31:01 DONE W_13p6_T60 setup=0.037 hold=0.039 ant=3 slew=0 cap=0 area=134776
+23:31:01 PROPOSE period=13.6 threshold=45
+23:31:01 START W_13p6_T45
+23:41:40 DONE W_13p6_T45 setup=-0.120 hold=0.044 ant=4 slew=0 cap=0 area=139187
+23:41:40 PROPOSE period=13.8 threshold=60
+23:41:40 START W_13p8_T60
+23:52:00 DONE W_13p8_T60 setup=0.237 hold=0.039 ant=3 slew=0 cap=0 area=134776
+23:52:00 PROPOSE period=13.8 threshold=45
+23:52:00 START W_13p8_T45
+00:02:41 DONE W_13p8_T45 setup=0.080 hold=0.044 ant=4 slew=0 cap=0 area=139187
+00:02:41 PROPOSE period=13.8 threshold=30
+00:02:41 START W_13p8_T30
+00:13:09 DONE W_13p8_T30 setup=0.013 hold=0.051 ant=3 slew=0 cap=0 area=143652
+00:13:09 PROPOSE period=13.8 threshold=20
+00:13:09 START W_13p8_T20
+00:24:31 DONE W_13p8_T20 setup=-0.467 hold=0.052 ant=3 slew=0 cap=0 area=149097
+00:24:31 PROPOSE period=14.0 threshold=60
+00:24:31 START W_14p0_T60
+00:34:47 DONE W_14p0_T60 setup=0.437 hold=0.039 ant=3 slew=0 cap=0 area=134776
+00:34:47 PROPOSE period=14.0 threshold=45
+00:34:47 START W_14p0_T45
+00:45:29 DONE W_14p0_T45 setup=0.280 hold=0.044 ant=4 slew=0 cap=0 area=139187
+00:45:29 PROPOSE period=14.0 threshold=30
+00:45:29 START W_14p0_T30
+00:56:03 DONE W_14p0_T30 setup=0.213 hold=0.051 ant=3 slew=0 cap=0 area=143652
+00:56:03 PROPOSE period=14.0 threshold=20
+00:56:03 START W_14p0_T20
+01:07:23 DONE W_14p0_T20 setup=-0.267 hold=0.052 ant=3 slew=0 cap=0 area=149097
+--- ranked: valid first, then antenna nets, then area x period
+run                T   setup   hold    area slew cap ant  status
+W_13p6_T60      13.6   0.037  0.039  134776    0   0   3  valid
+W_13p8_T60      13.8   0.237  0.039  134776    0   0   3  valid
+W_14p0_T60      14.0   0.437  0.039  134776    0   0   3  valid
+W_13p8_T30      13.8   0.013  0.051  143652    0   0   3  valid
+W_14p0_T30      14.0   0.213  0.051  143652    0   0   3  valid
+W_13p8_T45      13.8   0.080  0.044  139187    0   0   4  valid
+W_14p0_T45      14.0   0.280  0.044  139187    0   0   4  valid
+R3              13.2   0.017  0.039  126772    0   0   8  valid
+U2              13.6   0.179  0.041  126928    0   0  11  valid
+F3_13p2         13.2   0.175  0.110  116465    0   0  19  valid
+H1              13.2   0.154  0.054  108946    0   0  21  valid
+U1              13.2  -0.273  0.050  134637    0   0   0  fails: setup -0.273
+W_13p8_T20      13.8  -0.467  0.052  149097    0   0   3  fails: setup -0.467
+W_14p0_T20      14.0  -0.267  0.052  149097    0   0   3  fails: setup -0.267
+W_13p6_T45      13.6  -0.120  0.044  139187    0   0   4  fails: setup -0.120
+RESULT: NOT FOUND; best valid run is W_13p6_T60
+--- winner W_13p6_T60 at 13.6 ns
+  timing__setup__ws: 0.0373106001099787
+  timing__hold__ws: 0.03917433155412687
+  design__max_slew_violation__count: 0
+  design__max_cap_violation__count: 0
+  antenna__violating__nets: 3
+  antenna__violating__pins: 3
+  design__instance__area__stdcell: 134776
+  magic__drc_error__count: 0
+  klayout__drc_error__count: 0
+  design__lvs_error__count: 0
+--- cells: heuristic diodes=8471 total diode_2=10276 hold cells=228
+--- antenna summary of the last check (runs/W_13p6_T60/47-openroad-checkantennas-1/reports/antenna_summary.rpt)
+┏━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ P / R ┃ Partial ┃ Required ┃ Net     ┃ Pin        ┃ Layer ┃
+┡━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│ 2.41  │ 962.64  │ 400.00   │ net737  │ _06931_/A0 │ met1  │
+│ 1.71  │ 682.62  │ 400.00   │ _02425_ │ _07835_/C1 │ met1  │
+│ 1.54  │ 614.50  │ 400.00   │ net531  │ _06980_/A0 │ met1  │
+└───────┴─────────┴──────────┴─────────┴────────────┴───────┘
+--- independent OpenSTA check at max_ss (slew/cap violators and worst setup slack)
+worst slack max 0.04
+--- sustained power and gate-level check
+[W_13p6_T60] TB_RESULT: PASS (20 blocks match golden)
+[W_13p6_T60] SUSTAINED 16.60 mW at 13.6 ns | energy per block (67 cycles) = 15.13 nJ
+[W_13p8_T60] TB_RESULT: PASS (20 blocks match golden)
+[W_13p8_T60] SUSTAINED 16.40 mW at 13.8 ns | energy per block (67 cycles) = 15.16 nJ
+[W_14p0_T60] TB_RESULT: PASS (20 blocks match golden)
+[W_14p0_T60] SUSTAINED 16.10 mW at 14.0 ns | energy per block (67 cycles) = 15.10 nJ
+--- space: C:\             476G  434G   43G  92% /mnt/c
+=====END=====

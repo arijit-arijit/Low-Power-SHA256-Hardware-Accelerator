@@ -1,0 +1,70 @@
+=====BEGIN=====
+--- campaign log
+== G1_M40 start Sun Oct 25 11:44:44 UTC 2026
+== G1_M40 exit=0 Sun Oct 25 11:54:44 UTC 2026
+== G2_PORT start Sun Oct 25 11:54:44 UTC 2026
+== G2_PORT exit=0 Sun Oct 25 12:04:57 UTC 2026
+== G3_H300 start Sun Oct 25 12:04:57 UTC 2026
+== G3_H300 exit=0 Sun Oct 25 12:16:08 UTC 2026
+== G4_H600 start Sun Oct 25 12:16:08 UTC 2026
+== G4_H600 exit=0 Sun Oct 25 12:27:45 UTC 2026
+== G3_13p0 start Sun Oct 25 12:27:45 UTC 2026
+== G3_13p0 exit=0 Sun Oct 25 12:37:25 UTC 2026
+--- ranked results
+run              T(ns)  ok   setup    hold     area  slew cap  ant
+F3_13p2           13.2   Y   0.175   0.110   116465     0   0   19
+G2_PORT           13.2   Y   0.070   0.110   118400     0   0   25
+G4_H600           13.2   Y   0.038   0.110   121981   170   0   16
+G3_13p0           13.0   N  -0.056   0.112   116194     0   0   18
+G1_M40            13.2   N  -0.039   0.109   117038     0   0   24
+G3_H300           13.2   N   0.164   0.098   128432   181   0   11
+BEST F3_13p2
+--- winner: F3_13p2
+    "design__instance__count": 21520,
+    "design__max_slew_violation__count": 0,
+    "design__max_cap_violation__count": 0,
+    "timing__hold__ws": 0.10967993490540177,
+    "timing__setup__ws": 0.174896546640082,
+    "timing__hold_vio__count": 0,
+    "timing__setup_vio__count": 0,
+    "design__instance__area__stdcell": 116465,
+    "antenna__violating__nets": 19,
+    "antenna__violating__pins": 19,
+    "magic__drc_error__count": 0,
+    "klayout__drc_error__count": 0,
+    "design__lvs_error__count": 0,
+--- winner config vs F3_13p2
+--- independent max_ss check of winner (OpenSTA)
+worst slack max 0.17
+--- antenna summary of winner
+┏━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━┓
+┃ P / R ┃ Partial ┃ Required ┃ Net                  ┃ Pin         ┃ Layer ┃
+┡━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━┩
+│ 3.47  │ 1387.42 │ 400.00   │ net1008              │ _09323_/A0  │ met1  │
+│ 2.98  │ 1191.97 │ 400.00   │ net1011              │ hold936/A   │ met1  │
+│ 2.69  │ 1075.64 │ 400.00   │ net948               │ _08970_/A   │ met1  │
+│ 2.55  │ 1020.83 │ 400.00   │ net751               │ _10606_/A1  │ met1  │
+│ 2.02  │ 809.91  │ 400.00   │ u_round.w[10\]       │ _08731_/A1  │ met1  │
+│ 1.77  │ 707.76  │ 400.00   │ u_round.w[7\]        │ _10831_/B   │ met1  │
+│ 1.60  │ 639.94  │ 400.00   │ u_ctrl.state[0\]     │ _06874_/A   │ met1  │
+│ 1.56  │ 623.31  │ 400.00   │ _03242_              │ _09182_/A1  │ met1  │
+│ 1.52  │ 606.75  │ 400.00   │ _03474_              │ _09456_/A1  │ met1  │
+│ 1.33  │ 530.83  │ 400.00   │ net1082              │ _06836_/A   │ met1  │
+│ 1.33  │ 530.35  │ 400.00   │ net1048              │ _08729_/A2  │ met1  │
+│ 1.31  │ 525.53  │ 400.00   │ net167               │ _07662_/A0  │ met1  │
+│ 1.27  │ 509.22  │ 400.00   │ net743               │ _06937_/A0  │ met1  │
+│ 1.23  │ 490.29  │ 400.00   │ u_sched.w_t1[0\]     │ _07412_/B   │ met1  │
+│ 1.17  │ 468.42  │ 400.00   │ net612               │ _06832_/C   │ met1  │
+│ 1.12  │ 447.75  │ 400.00   │ net770               │ _06892_/B   │ met1  │
+│ 1.08  │ 430.39  │ 400.00   │ clknet_5_7__leaf_clk │ _14101_/CLK │ met1  │
+│ 1.07  │ 426.06  │ 400.00   │ _03387_              │ _09353_/B   │ met1  │
+│ 1.05  │ 421.00  │ 400.00   │ _04038_              │ _10117_/B   │ met1  │
+└───────┴─────────┴──────────┴──────────────────────┴─────────────┴───────┘
+--- diode count in winner netlist
+202
+--- power + gate-level sim
+[F3_13p2] TB_RESULT: PASS (all checks)
+[F3_13p2] Total                  1.13e-02   7.47e-03   9.09e-08   1.88e-02 100.0% | Annotated 34185 pin activities.
+--- disk
+C:\             476G  428G   49G  90% /mnt/c
+=====END=====

@@ -1,0 +1,52 @@
+=====BEGIN=====
+08:17:38 search13 start
+08:25:38 START Z_13p60
+08:36:23 DONE Z_13p60 setup=0.127 hold=0.050 ant=0 slew=0 cap=0 area=134637 SUCCESS
+08:36:23 Z_13p60 reproduced the zero-antenna layout with timing met; trying signoff 13.5 and 13.7
+08:36:23 START Z_13p50
+08:46:58 DONE Z_13p50 setup=0.027 hold=0.050 ant=0 slew=0 cap=0 area=134637 SUCCESS
+08:46:58 START Z_13p70
+08:57:34 DONE Z_13p70 setup=0.227 hold=0.050 ant=0 slew=0 cap=0 area=134637 SUCCESS
+--- ranked: valid first, then antenna nets, then area x signoff period
+run             impl  sign   setup   hold    area slew cap ant  status
+Z_13p50         13.2  13.5   0.027  0.050  134637    0   0   0  SUCCESS (antenna 0)
+Z_13p60         13.2  13.6   0.127  0.050  134637    0   0   0  SUCCESS (antenna 0)
+Z_13p70         13.2  13.7   0.227  0.050  134637    0   0   0  SUCCESS (antenna 0)
+W_13p6_T60      13.6  13.6   0.037  0.039  134776    0   0   3  valid
+W_13p8_T60      13.8  13.8   0.237  0.039  134776    0   0   3  valid
+W_14p0_T60      14.0  14.0   0.437  0.039  134776    0   0   3  valid
+R3              13.2  13.2   0.017  0.039  126772    0   0   8  valid
+F3_13p2         13.2  13.2   0.175  0.110  116465    0   0  19  valid
+H1              13.2  13.2   0.154  0.054  108946    0   0  21  valid
+U1              13.2  13.2  -0.273  0.050  134637    0   0   0  fails: setup -0.273
+Y_13p50         13.5  13.5  -0.063  0.039  134776    0   0   3  fails: setup -0.063
+--- violating pins per new run (pin(ratio))
+Z_13p50: none
+Z_13p60: none
+Z_13p70: none
+Y_13p50: _06931_/A0(2.41) _07835_/C1(1.71) _06980_/A0(1.54)
+RESULT: ZERO-ANTENNA VALID RUN FOUND: Z_13p50
+--- winner Z_13p50: implementation target 13.2 ns, signoff clock 13.5 ns, throughput 566 Mbit/s
+  timing__setup__ws: 0.02743938487425447
+  timing__hold__ws: 0.05018696711374979
+  design__max_slew_violation__count: 0
+  design__max_cap_violation__count: 0
+  antenna__violating__nets: 0
+  design__instance__area__stdcell: 134637
+  magic__drc_error__count: 0
+  klayout__drc_error__count: 0
+  design__lvs_error__count: 0
+  resolved: CLOCK_PERIOD=13.2, PNR_SDC_FILE=/home/arijit/pd/wt_e2/pd/openlane/sha256_core_13p2ns.sdc, SIGNOFF_SDC_FILE=/home/arijit/pd/wt_e2/pd/openlane/sha256_core_S13p50ns.sdc, RT_MIN_LAYER=met1, HEURISTIC_ANTENNA_THRESHOLD=60
+  final sdc sha256_core.sdc: create_clock -name clk -period 13.2000 [get_ports {clk}]
+--- cells: heuristic diodes=8453 total diode_2=10255 (area each 2.5024000000 um2) hold cells=235 (area each 10.009600000 um2)
+--- independent OpenSTA check at max_ss
+worst slack max -0.27
+--- sustained power and gate-level check (top valid runs, at their signoff clock)
+[Z_13p50] TB_RESULT: PASS (20 blocks match golden)
+[Z_13p50] SUSTAINED 16.90 mW at 13.5 ns | energy per block (67 cycles) = 15.29 nJ
+[Z_13p60] TB_RESULT: PASS (20 blocks match golden)
+[Z_13p60] SUSTAINED 16.80 mW at 13.6 ns | energy per block (67 cycles) = 15.31 nJ
+[Z_13p70] TB_RESULT: PASS (20 blocks match golden)
+[Z_13p70] SUSTAINED 16.80 mW at 13.7 ns | energy per block (67 cycles) = 15.42 nJ
+--- space: C:\             476G  436G   40G  92% /mnt/c
+=====END=====

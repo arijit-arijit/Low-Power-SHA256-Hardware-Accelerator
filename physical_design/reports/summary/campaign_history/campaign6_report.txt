@@ -1,0 +1,89 @@
+=====BEGIN=====
+== c6 start Sun Oct 25 17:19:11 UTC 2026
+== flow idle, starting runs Sun Oct 25 18:14:43 UTC 2026
+== Q1 start Sun Oct 25 18:14:43 UTC 2026
+== Q1 exit=0 Sun Oct 25 18:25:39 UTC 2026
+== Q2 start Sun Oct 25 18:25:39 UTC 2026
+== Q2 exit=0 Sun Oct 25 18:36:41 UTC 2026
+== Q3 start Sun Oct 25 18:36:41 UTC 2026
+== Q3 exit=0 Sun Oct 25 18:47:39 UTC 2026
+== Q4 start Sun Oct 25 18:47:39 UTC 2026
+== Q4 exit=0 Sun Oct 25 18:58:56 UTC 2026
+stage-2 base: Q1
+== R1 start Sun Oct 25 18:58:56 UTC 2026
+== R1 exit=0 Sun Oct 25 19:12:55 UTC 2026
+== R2 start Sun Oct 25 19:12:55 UTC 2026
+== R2 exit=0 Sun Oct 25 19:29:24 UTC 2026
+== R3 start Sun Oct 25 19:29:24 UTC 2026
+== R3 exit=0 Sun Oct 25 19:39:51 UTC 2026
+stage-3 base: R3 period: none
+--- ranked (valid first, then antenna nets, then area)
+run          ok     T   setup   hold    area  slew cap  ant
+R3            Y  13.2   0.017  0.039  126772     0   0    8
+Q1            Y  13.2   0.037  0.107  134224     0   0    8
+F3_13p2       Y  13.2   0.175  0.110  116465     0   0   19
+H1            Y  13.2   0.154  0.054  108946     0   0   21
+A3_DENS       Y  13.2   0.901  0.115  113862     0   0   29
+D55           Y  13.2   0.567  0.114  113476     0   0   35
+Q3            N  13.2  -1.752  0.042  141250     0   0    5
+Q4            N  13.2  -1.818  0.042  146328     0   0    5
+Q2            N  13.2  -1.765  0.043  136436     0   0    6
+R2            N  13.2   0.773  0.114  130334   116   0    7
+R1            N  13.2   0.846  0.053  123066    96   0   15
+K1            N  13.2   0.952  0.051  106555    33   0   28
+K1_12p5       N  12.5   0.065  0.052  106427    35   0   30
+D85           N  13.2   0.332  0.100  114271    37   1   37
+K1_12p0       N  12.0  -0.744  0.054  106649    31   0   48
+BEST R3
+--- area x period view
+run          ok     T   setup   hold    area  A*T/1k Mbit/s  ant
+H1            Y  13.2   0.154  0.054  108946    1438    579   21
+D55           Y  13.2   0.567  0.114  113476    1498    579   35
+A3_DENS       Y  13.2   0.901  0.115  113862    1503    579   29
+F3_13p2       Y  13.2   0.175  0.110  116465    1537    579   19
+R3            Y  13.2   0.017  0.039  126772    1673    579    8
+Q1            Y  13.2   0.037  0.107  134224    1772    579    8
+K1_12p0       N  12.0  -0.744  0.054  106649    1280    637   48
+K1_12p5       N  12.5   0.065  0.052  106427    1330    611   30
+K1            N  13.2   0.952  0.051  106555    1407    579   28
+D85           N  13.2   0.332  0.100  114271    1508    579   37
+R1            N  13.2   0.846  0.053  123066    1624    579   15
+R2            N  13.2   0.773  0.114  130334    1720    579    7
+Q2            N  13.2  -1.765  0.043  136436    1801    579    6
+Q3            N  13.2  -1.752  0.042  141250    1864    579    5
+Q4            N  13.2  -1.818  0.042  146328    1932    579    5
+--- runs without metrics
+--- winner: R3 (13.2 ns)
+    "design__instance__count": 27715,
+    "design__max_slew_violation__count": 0,
+    "design__max_cap_violation__count": 0,
+    "timing__hold__ws": 0.039374282726516864,
+    "timing__setup__ws": 0.01696243193916333,
+    "design__instance__area__stdcell": 126772,
+    "antenna__violating__nets": 8,
+    "antenna__violating__pins": 8,
+    "magic__drc_error__count": 0,
+    "klayout__drc_error__count": 0,
+    "design__lvs_error__count": 0,
+--- independent max_ss check
+worst slack max 0.02
+--- remaining antenna nets
+┏━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ P / R ┃ Partial ┃ Required ┃ Net            ┃ Pin        ┃ Layer ┃
+┡━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│ 2.17  │ 866.77  │ 400.00   │ _02872_        │ _08729_/C1 │ met1  │
+│ 2.02  │ 809.95  │ 400.00   │ u_round.w[10\] │ _08731_/A1 │ met1  │
+│ 1.73  │ 693.39  │ 400.00   │ _03531_        │ _09524_/B  │ met1  │
+│ 1.23  │ 490.17  │ 400.00   │ _03386_        │ _09353_/A  │ met1  │
+│ 1.11  │ 444.67  │ 400.00   │ _04038_        │ _10117_/B  │ met1  │
+│ 1.11  │ 443.44  │ 400.00   │ _03387_        │ _09353_/B  │ met1  │
+│ 1.05  │ 418.19  │ 400.00   │ net167         │ _07662_/A0 │ met1  │
+│ 1.04  │ 414.86  │ 400.00   │ net706         │ _06882_/C  │ met1  │
+└───────┴─────────┴──────────┴────────────────┴────────────┴───────┘
+--- cells
+heuristic diodes=5580 repair diodes=26 hold cells=235
+--- sustained power + gate-level check of winner
+[R3] TB_RESULT: PASS (20 blocks match golden)
+[R3] SUSTAINED 16.80 mW at 13.2 ns | energy per block (67 cycles) = 14.86 nJ
+C:\             476G  439G   38G  93% /mnt/c
+=====END=====

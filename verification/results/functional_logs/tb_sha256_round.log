@@ -1,0 +1,5 @@
+PASS abc round 0
+PASS abc round 1
+PASS abc round 0 repeated
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_round.sv:50: $finish called at 3000 (1ps)

@@ -1,0 +1,41 @@
+Path  0 --      45 : 0    1 pi                       A =   0.00  Df =  40.4  -16.1 ps  S =  69.0 ps  Cin =  0.0 ff  Cout =   4.9 ff  Cmax =   0.0 ff  G =    0  
+Path  1 --    7289 : 1    8 sky130_fd_sc_hd__buf_6   A =  11.26  Df = 176.1  -19.8 ps  S =  81.6 ps  Cin =  4.6 ff  Cout =  35.7 ff  Cmax = 785.5 ff  G =  743  
+Path  2 --    8754 : 2    1 sky130_fd_sc_hd__xor2_2  A =  16.27  Df = 339.5  -16.7 ps  S = 112.2 ps  Cin =  8.6 ff  Cout =   4.7 ff  Cmax = 130.0 ff  G =   53  
+Path  3 --    8755 : 2    2 sky130_fd_sc_hd__xnor2_1 A =   8.76  Df = 492.7  -19.9 ps  S = 151.0 ps  Cin =  4.5 ff  Cout =   4.4 ff  Cmax =  69.6 ff  G =   92  
+Path  4 --    8761 : 3    2 sky130_fd_sc_hd__xnor3_1 A =  22.52  Df = 917.8  -28.4 ps  S = 101.8 ps  Cin =  3.7 ff  Cout =   7.5 ff  Cmax = 154.7 ff  G =  192  
+Path  5 --    8762 : 3    2 sky130_fd_sc_hd__xnor3_2 A =  23.77  Df =1190.6  -10.0 ps  S = 100.6 ps  Cin =  3.7 ff  Cout =  13.2 ff  Cmax = 301.2 ff  G =  337  
+Path  6 --    8774 : 2    2 sky130_fd_sc_hd__nor2_2  A =   6.26  Df =1294.9  -57.9 ps  S =  96.2 ps  Cin =  4.4 ff  Cout =   5.9 ff  Cmax = 141.9 ff  G =  128  
+Path  7 --    8799 : 3    2 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =1561.0  -67.5 ps  S =  61.5 ps  Cin =  3.3 ff  Cout =   5.9 ff  Cmax = 304.9 ff  G =  171  
+Path  8 --    8815 : 3    4 sky130_fd_sc_hd__xnor3_2 A =  23.77  Df =1992.2  -51.0 ps  S = 105.2 ps  Cin =  3.7 ff  Cout =  14.2 ff  Cmax = 301.2 ff  G =  367  
+Path  9 --    8816 : 2    3 sky130_fd_sc_hd__xnor2_1 A =   8.76  Df =2154.2   -5.5 ps  S = 196.7 ps  Cin =  4.5 ff  Cout =   6.7 ff  Cmax =  69.6 ff  G =  139  
+Path 10 --    8824 : 3    3 sky130_fd_sc_hd__a21oi_1 A =   5.00  Df =2367.5  -96.6 ps  S = 195.6 ps  Cin =  2.3 ff  Cout =   7.4 ff  Cmax =  74.2 ff  G =  303  
+Path 11 --    8852 : 3    3 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =2596.4  -10.3 ps  S =  64.6 ps  Cin =  3.3 ff  Cout =   6.9 ff  Cmax = 304.9 ff  G =  200  
+Path 12 --    8878 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =2945.3 -168.4 ps  S =  93.6 ps  Cin =  2.8 ff  Cout =   7.4 ff  Cmax = 155.7 ff  G =  255  
+Path 13 --    8902 : 3    3 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =3263.4 -291.3 ps  S =  64.6 ps  Cin =  3.3 ff  Cout =   6.9 ff  Cmax = 304.9 ff  G =  200  
+Path 14 --    8929 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =3622.6 -470.0 ps  S =  93.6 ps  Cin =  2.8 ff  Cout =   7.4 ff  Cmax = 155.7 ff  G =  255  
+Path 15 --    8956 : 3    2 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =3942.4 -592.7 ps  S =  65.8 ps  Cin =  3.3 ff  Cout =   7.3 ff  Cmax = 304.9 ff  G =  212  
+Path 16 --    8983 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =4302.0 -771.1 ps  S =  93.6 ps  Cin =  2.8 ff  Cout =   7.4 ff  Cmax = 155.7 ff  G =  255  
+Path 17 --    9009 : 3    3 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =4620.1 -894.0 ps  S =  64.6 ps  Cin =  3.3 ff  Cout =   6.9 ff  Cmax = 304.9 ff  G =  200  
+Path 18 --    9036 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =4979.3-1072.6 ps  S =  93.6 ps  Cin =  2.8 ff  Cout =   7.4 ff  Cmax = 155.7 ff  G =  255  
+Path 19 --    9061 : 3    2 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =5301.0-1194.9 ps  S =  67.1 ps  Cin =  3.3 ff  Cout =   7.8 ff  Cmax = 304.9 ff  G =  225  
+Path 20 --    9088 : 3    3 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =5613.2-1319.5 ps  S =  65.8 ps  Cin =  3.3 ff  Cout =   7.4 ff  Cmax = 304.9 ff  G =  213  
+Path 21 --    9113 : 3    3 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =5923.2-1444.6 ps  S =  64.5 ps  Cin =  3.3 ff  Cout =   6.9 ff  Cmax = 304.9 ff  G =  200  
+Path 22 --    9139 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =6282.4-1623.2 ps  S =  93.6 ps  Cin =  2.8 ff  Cout =   7.4 ff  Cmax = 155.7 ff  G =  255  
+Path 23 --    9164 : 3    2 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =6602.2-1745.9 ps  S =  65.8 ps  Cin =  3.3 ff  Cout =   7.3 ff  Cmax = 304.9 ff  G =  212  
+Path 24 --    9192 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =6958.8-1925.0 ps  S =  89.2 ps  Cin =  2.8 ff  Cout =   6.9 ff  Cmax = 155.7 ff  G =  238  
+Path 25 --    9217 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =7322.1-2101.7 ps  S =  89.2 ps  Cin =  2.8 ff  Cout =   6.9 ff  Cmax = 155.7 ff  G =  238  
+Path 26 --    9243 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =7688.3-2277.5 ps  S =  93.6 ps  Cin =  2.8 ff  Cout =   7.4 ff  Cmax = 155.7 ff  G =  255  
+Path 27 --    9270 : 3    2 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =8008.0-2400.1 ps  S =  65.8 ps  Cin =  3.3 ff  Cout =   7.3 ff  Cmax = 304.9 ff  G =  212  
+Path 28 --    9296 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =8371.9-2578.4 ps  S =  98.8 ps  Cin =  2.8 ff  Cout =   8.0 ff  Cmax = 155.7 ff  G =  276  
+Path 29 --    9325 : 3    2 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =8692.8 -302.4 ps  S =  65.8 ps  Cin =  3.3 ff  Cout =   7.3 ff  Cmax = 304.9 ff  G =  212  
+Path 30 --    9351 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =9049.4 -481.3 ps  S =  89.2 ps  Cin =  2.8 ff  Cout =   6.9 ff  Cmax = 155.7 ff  G =  238  
+Path 31 --    9377 : 3    2 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =9415.6 -657.6 ps  S =  92.9 ps  Cin =  2.8 ff  Cout =   7.3 ff  Cmax = 155.7 ff  G =  253  
+Path 32 --    9403 : 3    3 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =9782.4 -832.8 ps  S =  93.6 ps  Cin =  2.8 ff  Cout =   7.4 ff  Cmax = 155.7 ff  G =  255  
+Path 33 --    9429 : 3    2 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =10104.0 -955.0 ps  S =  67.1 ps  Cin =  3.3 ff  Cout =   7.8 ff  Cmax = 304.9 ff  G =  225  
+Path 34 --    9456 : 3    3 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =10414.4-1080.0 ps  S =  64.5 ps  Cin =  3.3 ff  Cout =   6.9 ff  Cmax = 304.9 ff  G =  200  
+Path 35 --    9482 : 3    2 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =10776.4-1258.3 ps  S =  97.3 ps  Cin =  2.8 ff  Cout =   7.8 ff  Cmax = 155.7 ff  G =  269  
+Path 36 --    9510 : 3    3 sky130_fd_sc_hd__maj3_2  A =  11.26  Df =11095.2-1380.6 ps  S =  64.6 ps  Cin =  3.3 ff  Cout =   6.9 ff  Cmax = 304.9 ff  G =  200  
+Path 37 --    9535 : 3    1 sky130_fd_sc_hd__maj3_1  A =  10.01  Df =11436.3-1561.2 ps  S =  75.6 ps  Cin =  2.8 ff  Cout =   4.7 ff  Cmax = 155.7 ff  G =  162  
+Path 38 --    9553 : 2    1 sky130_fd_sc_hd__xnor2_1 A =   8.76  Df =11590.0-1588.0 ps  S = 114.6 ps  Cin =  4.5 ff  Cout =   2.6 ff  Cmax =  69.6 ff  G =   54  
+Path 39 --    9555 : 3    1 sky130_fd_sc_hd__o21ai_1 A =   5.00  Df =11651.0-1551.7 ps  S =  82.6 ps  Cin =  2.3 ff  Cout =   1.8 ff  Cmax =  80.6 ff  G =   75  
+Path 40 --    9556 : 3    1 sky130_fd_sc_hd__mux2_2  A =  11.26  Df =11884.1-1657.7 ps  S =  36.3 ps  Cin =  2.3 ff  Cout =   0.0 ff  Cmax = 297.6 ff  G =    0  

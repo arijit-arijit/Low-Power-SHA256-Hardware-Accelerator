@@ -1,0 +1,19 @@
+== SHA-256 core synthesis summary ==
+yosys        : Yosys 0.33 (git sha1 2584903a060)
+liberty      : sky130_fd_sc_hd__tt_025C_1v80.lib  sha256 ec0e1067a35c8bf20b11e58d1e8ac53326067e4dac84a125cc1b917a3518d0d9
+ABC target   : -D 10000 ps (synthesis target, not an OpenSTA constraint)
+
+-- GENERIC synthesis (technology independent, no area unit) --
+  Number of cells:               6572
+  $_DFFE_PP_                   1280
+  $_DFF_P_                       35
+  $_SDFFE_PN0N_                   7
+
+-- SKY130 HD mapped (tt_025C_1v80) --
+  Number of cells:               8871
+  Chip area for module '\sha256_core': 67457.196800
+  flip-flops (dfxtp_1): 1322
+
+-- ABC delay ESTIMATE (no wires, no clock skew; NOT static timing analysis) --
+  WireLoad = "none"  Gates =   7549 (  7.9 %)   Cap =  4.7 ff (  3.5 %)   Area =    40991.81 ( 88.9 %)   Delay = 11884.06 ps  (  1.6 %)
+  target 10000 ps -> estimate EXCEEDS target

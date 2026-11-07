@@ -1,0 +1,26 @@
+
+9. Printing statistics.
+
+=== sha256_core ===
+
+   Number of wires:               5909
+   Number of wire bits:          12844
+   Number of public wires:         136
+   Number of public wire bits:    6785
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               7646
+     $_ANDNOT_                    1338
+     $_AND_                        288
+     $_DFFE_PP_                   1280
+     $_DFF_P_                       35
+     $_MUX_                       1134
+     $_NAND_                       213
+     $_NOR_                        821
+     $_NOT_                         87
+     $_ORNOT_                       68
+     $_OR_                         676
+     $_SDFFE_PN0N_                   7
+     $_XNOR_                       708
+     $_XOR_                        991

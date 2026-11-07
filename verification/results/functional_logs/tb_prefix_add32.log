@@ -1,0 +1,2 @@
+PASS: prefix_add32, 200000 random vectors plus directed cases
+tb/tb_prefix_add32.sv:63: $finish called at 200006000 (1ps)

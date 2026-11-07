@@ -1,0 +1,30 @@
+=====BEGIN=====
+== c9 start Sun Oct 25 22:31:48 UTC 2026
+== U1 start Sun Oct 25 22:31:48 UTC 2026
+== U1 exit=0 Sun Oct 25 22:42:40 UTC 2026
+== U2 start Sun Oct 25 22:42:40 UTC 2026
+== U2 exit=0 Sun Oct 25 22:53:02 UTC 2026
+== U3 start Sun Oct 25 22:53:02 UTC 2026
+== U3 exit=0 Sun Oct 25 23:03:24 UTC 2026
+--- ranked (valid first, antenna nets, area)
+run          ok     T   setup   hold    area  slew cap  ant
+R3            Y  13.2   0.017  0.039  126772     0   0    8
+U3            Y  13.2   0.017  0.039  126772     0   0    8
+Q1            Y  13.2   0.037  0.107  134224     0   0    8
+U2            Y  13.6   0.179  0.041  126928     0   0   11
+F3_13p2       Y  13.2   0.175  0.110  116465     0   0   19
+H1            Y  13.2   0.154  0.054  108946     0   0   21
+U1            N  13.2  -0.273  0.050  134637     0   0    0
+BEST R3
+--- verdict versus R3 (fewer antenna, OR same antenna with setup>=0.10, hold>=0.05, area<=R3+3%)
+R3 reference: antenna 8, area 126772, setup 0.017, hold 0.039
+U1: antenna 0, area 134637, setup -0.273, hold 0.050 -> NOT VALID
+U2: antenna 11, area 126928, setup 0.179, hold 0.041 -> not better
+U3: antenna 8, area 126772, setup 0.017, hold 0.039 -> not better
+--- sustained power of valid runs
+[U2] TB_RESULT: PASS (20 blocks match golden)
+[U2] SUSTAINED 16.40 mW at 13.6 ns | energy per block (67 cycles) = 14.94 nJ
+[U3] TB_RESULT: PASS (20 blocks match golden)
+[U3] SUSTAINED 16.80 mW at 13.2 ns | energy per block (67 cycles) = 14.86 nJ
+C:\             476G  434G   43G  92% /mnt/c
+=====END=====

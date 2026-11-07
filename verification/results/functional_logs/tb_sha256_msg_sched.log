@@ -1,0 +1,10 @@
+PASS vector 0 block equals hand-built padded "abc"
+PASS vector 0: W[0..63] all match
+PASS vector 1: W[0..63] all match
+PASS vector 2: W[0..63] all match
+PASS vector 3: W[0..63] all match
+PASS load beats advance when both are high
+PASS reload mid-block restarts at W[0]
+checks run: 406
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_msg_sched.sv:158: $finish called at 4436000 (1ps)

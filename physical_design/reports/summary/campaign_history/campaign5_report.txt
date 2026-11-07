@@ -1,0 +1,32 @@
+=====BEGIN=====
+== c5 start Sun Oct 25 17:11:27 UTC 2026
+== K1 start Sun Oct 25 17:11:27 UTC 2026
+== K1 exit=0 Sun Oct 25 17:25:03 UTC 2026
+== K1_12p5 start Sun Oct 25 17:25:03 UTC 2026
+== K1_12p5 exit=0 Sun Oct 25 17:38:27 UTC 2026
+== K1_12p0 start Sun Oct 25 17:38:27 UTC 2026
+== K1_12p0 exit=0 Sun Oct 25 17:50:58 UTC 2026
+== D55 start Sun Oct 25 17:50:58 UTC 2026
+== D55 exit=0 Sun Oct 25 18:02:05 UTC 2026
+== D85 start Sun Oct 25 18:02:05 UTC 2026
+== D85 exit=0 Sun Oct 25 18:13:48 UTC 2026
+--- pareto (valid first, then area x period)
+run          ok     T   setup   hold    area  A*T/1k Mbit/s  ant
+H1            Y  13.2   0.154  0.054  108946    1438    579   21
+D55           Y  13.2   0.567  0.114  113476    1498    579   35
+A3_DENS       Y  13.2   0.901  0.115  113862    1503    579   29
+F3_13p2       Y  13.2   0.175  0.110  116465    1537    579   19
+K1_12p0       N  12.0  -0.744  0.054  106649    1280    637   48
+K1_12p5       N  12.5   0.065  0.052  106427    1330    611   30
+K1            N  13.2   0.952  0.051  106555    1407    579   28
+D85           N  13.2   0.332  0.100  114271    1508    579   37
+--- runs without metrics
+--- sustained power (valid runs)
+[H1] TB_RESULT: PASS (20 blocks match golden)
+[H1] SUSTAINED 16.60 mW at 13.2 ns | energy per block (67 cycles) = 14.68 nJ
+[A3_DENS] TB_RESULT: PASS (20 blocks match golden)
+[A3_DENS] SUSTAINED 15.40 mW at 13.2 ns | energy per block (67 cycles) = 13.62 nJ
+[D55] TB_RESULT: PASS (20 blocks match golden)
+[D55] SUSTAINED 15.60 mW at 13.2 ns | energy per block (67 cycles) = 13.80 nJ
+C:\             476G  442G   34G  93% /mnt/c
+=====END=====

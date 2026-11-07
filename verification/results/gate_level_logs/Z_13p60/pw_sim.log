@@ -1,0 +1,4 @@
+VCD info: dumpfile build/power/Z_13p60/pw.vcd opened for output.
+cycles per block (start to start) = 67
+TB_RESULT: PASS (20 blocks match golden)
+tb/tb_sha256_power.sv:71: $finish called at 18286200 (1ps)

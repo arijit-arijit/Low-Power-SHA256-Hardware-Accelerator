@@ -1,0 +1,12 @@
+VCD info: dumpfile build/tb_sha256_core.vcd opened for output.
+PASS msg 0 (3 bytes, 1 block): ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+PASS msg 1 (0 bytes, 1 block): e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+PASS msg 2 (56 bytes, 2 blocks): 248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1
+PASS msg 3 (55 bytes, 1 block): 9f4390f8d30c2dd92ec9f095b65e2b9ae9b0a925a5258e241c9f1e910f734318
+PASS msg 4 (64 bytes, 2 blocks): ffe054fe7ae0cb6dc65c3af9b61d5209f439851db43d0ba5997337df154668eb
+PASS msg 5 (119 bytes, 2 blocks): 31eba51c313a5c08226adf18d4a359cfdfd8d2e816b13f4af952f7ea6584dcfb
+PASS start pulses while busy / in done cycle are ignored
+PASS reset aborts a block; core then computes a correct digest
+checks run: 751
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_core.sv:319: $finish called at 7937000 (1ps)

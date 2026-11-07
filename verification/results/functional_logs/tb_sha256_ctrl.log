@@ -1,0 +1,4 @@
+VCD info: dumpfile build/tb_sha256_ctrl.vcd opened for output.
+checks run: 777
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_ctrl.sv:247: $finish called at 7187000 (1ps)

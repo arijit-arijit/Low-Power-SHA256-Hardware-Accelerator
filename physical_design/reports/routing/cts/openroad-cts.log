@@ -1,0 +1,135 @@
+Reading timing models for corner nom_tt_025C_1v80…
+Reading timing library for the 'nom_tt_025C_1v80' corner at '/home/arijit/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading timing models for corner nom_ff_n40C_1v95…
+Reading timing library for the 'nom_ff_n40C_1v95' corner at '/home/arijit/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'…
+Reading timing models for corner nom_ss_100C_1v60…
+Reading timing library for the 'nom_ss_100C_1v60' corner at '/home/arijit/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+Reading OpenROAD database at '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/33-openroad-detailedplacement/sha256_core.odb'…
+Reading design constraints file at '/home/arijit/pd/wt_e2/pd/openlane/sha256_core_13p2ns.sdc'…
+[INFO] No information on clock propagation in input SDC file-- propagating all clocks.
+[INFO] Setting RC values…
+[INFO] Configuring cts characterization…
+[INFO] Performing clock tree synthesis…
+[INFO] Looking for the following net(s): clk
+[INFO] Running Clock Tree Synthesis…
+[INFO CTS-0050] Root buffer is sky130_fd_sc_hd__clkbuf_16.
+[INFO CTS-0051] Sink buffer is sky130_fd_sc_hd__clkbuf_8.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    sky130_fd_sc_hd__clkbuf_2
+                    sky130_fd_sc_hd__clkbuf_4
+                    sky130_fd_sc_hd__clkbuf_8
+[INFO CTS-0049] Characterization buffer is sky130_fd_sc_hd__clkbuf_8.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0010]  Clock net "clk" has 1322 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 3 buffer(s) types.
+[INFO CTS-0200] 0 placement blockages have been identified.
+[INFO CTS-0201] 0 placed hard macros will be treated like blockages.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 1322.
+[INFO CTS-0029]  Sinks will be clustered in groups of up to 25 and with maximum cluster diameter of 50.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 13600  dbu (13 um).
+[INFO CTS-0204] A clustering solution was found from clustering size of 25 and clustering diameter of 50.
+[INFO CTS-0205] Better solution may be possible if either -sink_clustering_size, -sink_clustering_max_diameter, or both options are omitted to enable automatic clustering.
+[INFO CTS-0019]  Total number of sinks after clustering: 281.
+[INFO CTS-0024]  Normalized sink region: [(1.76037, 1.50441), (64.8338, 64.4478)].
+[INFO CTS-0025]     Width:  63.0735.
+[INFO CTS-0026]     Height: 62.9434.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 141
+    Sub-region size: 31.5367 X 62.9434
+[INFO CTS-0034]     Segment length (rounded): 16.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 71
+    Sub-region size: 31.5367 X 31.4717
+[INFO CTS-0034]     Segment length (rounded): 16.
+ Level 3
+    Direction: Horizontal
+    Sinks per sub-region: 36
+    Sub-region size: 15.7684 X 31.4717
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 4
+    Direction: Vertical
+    Sinks per sub-region: 18
+    Sub-region size: 15.7684 X 15.7358
+[INFO CTS-0034]     Segment length (rounded): 8.
+ Level 5
+    Direction: Horizontal
+    Sinks per sub-region: 9
+    Sub-region size: 7.8842 X 15.7358
+[INFO CTS-0034]     Segment length (rounded): 4.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 281.
+[INFO CTS-0018]     Created 287 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 4.
+[INFO CTS-0015]     Created 287 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:27, 3:35, 4:42, 5:51, 6:35, 7:36, 8:21, 9:12, 10:12, 11:4, 12:4, 13:2, 14:1..
+[INFO CTS-0017]     Max level of the clock tree: 5.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 1559
+[INFO CTS-0100]  Leaf buffers 250
+[INFO CTS-0101]  Average sink wire length 1347.32 um
+[INFO CTS-0102]  Path depth 3 - 4
+[INFO CTS-0207]  Leaf load cells 237
+[INFO] Repairing long wires on clock nets…
+[INFO RSZ-0058] Using max wire length 6335um.
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                               644    2417.32
+  Tap cell                              11016   13783.22
+  Clock buffer                            377    5285.07
+  Timing Repair Buffer                   1114    6104.60
+  Inverter                                123     492.97
+  Clock inverter                          147    1809.24
+  Sequential cell                        1322   27312.44
+  Multi-Input combinational cell         6269   51822.20
+  Total                                 21012  109027.07
+Writing OpenROAD database to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.odb'…
+Writing netlist to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.nl.v'…
+Writing powered netlist to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.pnl.v'…
+Writing layout to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.def'…
+Writing timing constraints to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.sdc'…
+[INFO] Legalizing…
+Placement Analysis
+---------------------------------
+total displacement       1577.4 u
+average displacement        0.1 u
+max displacement            9.4 u
+original HPWL          453701.3 u
+legalized HPWL         460830.0 u
+delta HPWL                    2 %
+
+[INFO DPL-0020] Mirrored 3492 instances
+[INFO DPL-0021] HPWL before          460830.0 u
+[INFO DPL-0022] HPWL after           453481.3 u
+[INFO DPL-0023] HPWL delta               -1.6 %
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                               644    2417.32
+  Tap cell                              11016   13783.22
+  Clock buffer                            377    5285.07
+  Timing Repair Buffer                   1114    6104.60
+  Inverter                                123     492.97
+  Clock inverter                          147    1809.24
+  Sequential cell                        1322   27312.44
+  Multi-Input combinational cell         6269   51822.20
+  Total                                 21012  109027.07
+Writing OpenROAD database to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.odb'…
+Writing netlist to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.nl.v'…
+Writing powered netlist to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.pnl.v'…
+Writing layout to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.def'…
+Writing timing constraints to '/home/arijit/pd/wt_e2/pd/openlane/runs/Z_13p50/34-openroad-cts/sha256_core.sdc'…
+%OL_CREATE_REPORT cts.rpt
+[INFO CTS-0003] Total number of Clock Roots: 1.
+[INFO CTS-0004] Total number of Buffers Inserted: 287.
+[INFO CTS-0005] Total number of Clock Subnets: 287.
+[INFO CTS-0006] Total number of Sinks: 1322.
+%OL_END_REPORT

@@ -1,0 +1,113 @@
+=====BEGIN=====
+--- slew driver diagnostic (E2G_14_ANT)
+Startpoint: _14066_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _13676_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Fanout      Cap     Slew    Delay     Time   Description
+---------------------------------------------------------------------------------
+                            0.000    0.000   clock clk (rise edge)
+                            1.846    1.846   clock network delay (propagated)
+                   0.076    0.000    1.846 ^ _14066_/CLK (sky130_fd_sc_hd__dfxtp_4)
+     7    0.100    0.453    0.989    2.835 ^ _14066_/Q (sky130_fd_sc_hd__dfxtp_4)
+    82    0.611    1.458    1.099    3.934 v _08775_/Y (sky130_fd_sc_hd__nand2_8)
+     1    0.003    0.091    1.249    5.183 v _09613_/X (sky130_fd_sc_hd__and2_1)
+     1    0.002    0.059    0.328    5.510 v _09614_/X (sky130_fd_sc_hd__a31o_1)
+                   0.059    0.000    5.510 v _13676_/D (sky130_fd_sc_hd__dfxtp_1)
+                                     5.510   data arrival time
+                           14.000   14.000   clock clk (rise edge)
+                            1.796   15.796   clock network delay (propagated)
+                           -0.250   15.546   clock uncertainty
+                            0.000   15.546   clock reconvergence pessimism
+                                    15.546 ^ _13676_/CLK (sky130_fd_sc_hd__dfxtp_1)
+                           -0.262   15.284   library setup time
+                                    15.284   data required time
+---------------------------------------------------------------------------------
+                                    15.284   data required time
+                                    -5.510   data arrival time
+---------------------------------------------------------------------------------
+                                     9.774   slack (MET)
+Startpoint: _14066_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _13580_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Fanout      Cap     Slew    Delay     Time   Description
+---------------------------------------------------------------------------------
+                            0.000    0.000   clock clk (rise edge)
+                            1.846    1.846   clock network delay (propagated)
+                   0.076    0.000    1.846 ^ _14066_/CLK (sky130_fd_sc_hd__dfxtp_4)
+     7    0.100    0.453    0.989    2.835 ^ _14066_/Q (sky130_fd_sc_hd__dfxtp_4)
+    82    0.611    1.458    1.099    3.934 v _08775_/Y (sky130_fd_sc_hd__nand2_8)
+     1    0.003    0.091    1.248    5.182 v _08970_/X (sky130_fd_sc_hd__and2_1)
+     1    0.003    0.066    0.338    5.521 v _08971_/X (sky130_fd_sc_hd__a31o_1)
+                   0.066    0.000    5.521 v _13580_/D (sky130_fd_sc_hd__dfxtp_2)
+                                     5.521   data arrival time
+                           14.000   14.000   clock clk (rise edge)
+                            1.798   15.798   clock network delay (propagated)
+                           -0.250   15.548   clock uncertainty
+                            0.000   15.548   clock reconvergence pessimism
+                                    15.548 ^ _13580_/CLK (sky130_fd_sc_hd__dfxtp_2)
+                           -0.264   15.284   library setup time
+                                    15.284   data required time
+---------------------------------------------------------------------------------
+                                    15.284   data required time
+                                    -5.521   data arrival time
+---------------------------------------------------------------------------------
+                                     9.763   slack (MET)
+--- campaign log
+== F1_L300 start Sun Oct 25 09:24:17 UTC 2026
+== F1_L300 exit=0 Sun Oct 25 09:34:17 UTC 2026
+== F1_L150 start Sun Oct 25 09:34:17 UTC 2026
+== F1_L150 exit=0 Sun Oct 25 09:43:38 UTC 2026
+== F1_S40 start Sun Oct 25 09:43:38 UTC 2026
+== F1_S40 exit=0 Sun Oct 25 09:53:00 UTC 2026
+== F1_G start Sun Oct 25 09:53:00 UTC 2026
+== F1_G exit=0 Sun Oct 25 10:03:00 UTC 2026
+== F2_COMB start Sun Oct 25 10:03:01 UTC 2026
+== F2_COMB exit=0 Sun Oct 25 10:12:24 UTC 2026
+== F3_13p5 start Sun Oct 25 10:12:24 UTC 2026
+== F3_13p5 exit=0 Sun Oct 25 10:21:45 UTC 2026
+== F3_13p2 start Sun Oct 25 10:21:46 UTC 2026
+== F3_13p2 exit=0 Sun Oct 25 10:31:19 UTC 2026
+--- ranked results (all runs)
+run              T(ns)  met   setup    hold     area  slew cap  ant
+F3_13p2           13.2    Y   0.175   0.110   116465     0   0   19
+F3_13p5           13.5    Y   0.293   0.108   116328     0   0   20
+F1_S40            14.0    Y   0.793   0.108   116328     0   0   20
+F2_COMB           14.0    Y   0.793   0.108   116328     0   0   20
+E2G_14_ANT        14.0    Y   0.814   0.110   116284    83   1   24
+E2G_14_RSZ2       14.0    Y   0.901   0.110   116312    83   1   27
+F1_G              14.0    Y   0.901   0.110   116312    83   1   27
+F1_L150           14.0    N  -2.150   0.098   121654     0   0   20
+F1_L300           14.0    N  -0.160   0.109   118640     0   0   24
+BEST F3_13p2
+--- winner: F3_13p2
+    "design__max_slew_violation__count": 0,
+    "design__max_cap_violation__count": 0,
+    "timing__hold__ws": 0.10967993490540177,
+    "timing__setup__ws": 0.174896546640082,
+    "timing__setup_vio__count": 0,
+    "design__instance__area__stdcell": 116465,
+    "antenna__violating__nets": 19,
+    "magic__drc_error__count": 0,
+    "klayout__drc_error__count": 0,
+    "design__lvs_error__count": 0,
+--- winner config vs E2G_14_ANT
+2c2
+<     "CLOCK_PERIOD": 14.0,
+---
+>     "CLOCK_PERIOD": 13.2,
+4a5
+>     "DESIGN_REPAIR_MAX_SLEW_PCT": 40,
+14,15c15,16
+<     "PNR_SDC_FILE": "/home/arijit/pd/wt_e2/pd/openlane/sha256_core_14ns.sdc",
+<     "SIGNOFF_SDC_FILE": "/home/arijit/pd/wt_e2/pd/openlane/sha256_core_14ns.sdc",
+---
+>     "PNR_SDC_FILE": "/home/arijit/pd/wt_e2/pd/openlane/sha256_core_13p2ns.sdc",
+>     "SIGNOFF_SDC_FILE": "/home/arijit/pd/wt_e2/pd/openlane/sha256_core_13p2ns.sdc",
+--- power + gate-level sim (winner)
+[F3_13p2] TB_RESULT: PASS (all checks)
+[F3_13p2] Total                  1.13e-02   7.47e-03   9.09e-08   1.88e-02 100.0% | Annotated 34185 pin activities.
+--- disk
+C:\             476G  416G   61G  88% /mnt/c
+=====END=====
