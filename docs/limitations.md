@@ -7,4 +7,3 @@
 * Golden vectors for the gate-level test came from this project's RTL (independently cross-checked once).
 * Unverified: "7169" figure, E2 pre-route STA, original −0.27 ns log, S2-vs-E2 evidence, Verilator lint output.
 * No formal verification or coverage closure.
-* AI assistance was used in development.

@@ -1,5 +1,7 @@
 # Final results (every number traces to a saved tool output)
 
+Primary candidate: Z_13p60. Z_13p50 is the higher-throughput alternative with a thinner setup margin.
+
 ## Post-route (OpenLane 2.3.10, SKY130 HD, one layout, three signoff clocks)
 | Run | Signoff clock | Setup ws | Hold ws | Area µm² | Throughput | Power | Energy/block |
 |---|---|---|---|---|---|---|---|

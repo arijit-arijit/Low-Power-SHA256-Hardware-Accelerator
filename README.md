@@ -6,19 +6,22 @@ An iterative, **block-level** SHA-256 compression core written in SystemVerilog,
 
 ## Headline results (all from tool output; see `results/` and `docs/`)
 
-| Item | Value | Source / method |
-|---|---|---|
-| Architecture | 1 round/clock, 67 cycles per block | gate-level sim log |
-| Post-route area (std-cell) | 134,637 µm² | OpenLane `design__instance__area__stdcell` |
-| Signoff clock (best run, `Z_13p50`) | 13.5 ns (74.07 MHz) | 9-corner post-route STA |
-| Worst setup / hold slack | +0.027 ns / +0.050 ns | `max_ss_100C_1v60` / `min_ff_n40C_1v95` |
-| Throughput | 566.06 Mbit/s | 512 b / (67 x 13.5 ns) |
-| Power | 16.9 mW | OpenSTA `read_vcd`, nom SPEF, tt/1.8 V/25 °C, 20 blocks |
-| Energy per block | 15.29 nJ | 16.9 mW x 67 x 13.5 ns |
-| DRC / LVS / antenna | 0 / 0 / 0 | Magic + KLayout / Netgen / OpenROAD |
-| Gate-level functional check | 20/20 blocks PASS | `pw_sim.log` |
+Primary candidate: **`Z_13p60`**. Alternative with higher throughput and thinner margin: `Z_13p50`.
 
-**Timing margin caveat.** `Z_13p50` closes with only +0.027 ns of setup slack. The same layout evaluated against the 13.2 ns *implementation* constraint fails by −0.273 ns. `Z_13p60` (+0.127 ns) is the more conservative signoff point. Details in `docs/timing_analysis.md`.
+| Item | Z_13p60 (primary) | Z_13p50 (alternative) | Source / method |
+|---|---|---|---|
+| Architecture | 1 round/clock, 67 cycles/block | same | gate-level sim log |
+| Post-route std-cell area | 134,637 µm² | 134,637 µm² | OpenLane `design__instance__area__stdcell` |
+| Signoff clock | 13.6 ns (73.5 MHz) | 13.5 ns (74.1 MHz) | 9-corner post-route STA |
+| Worst setup slack (`max_ss_100C_1v60`) | +0.127 ns | +0.027 ns | OpenLane metrics |
+| Worst hold slack (`min_ff_n40C_1v95`) | +0.050 ns | +0.050 ns | OpenLane metrics |
+| Throughput | 561.9 Mbit/s | 566.06 Mbit/s | 512 b / (67 x clock) |
+| Power | 16.8 mW | 16.9 mW | OpenSTA `read_vcd`, nom SPEF, tt/1.8 V/25 °C, 20 blocks |
+| Energy per block | 15.31 nJ | 15.29 nJ | power x 67 x clock |
+| DRC / LVS / antenna | 0 / 0 / 0 | 0 / 0 / 0 | Magic+KLayout / Netgen / OpenROAD |
+| Gate-level functional check | 20/20 PASS | 20/20 PASS | `pw_sim.log` |
+
+**Both runs are the same layout** (implemented with a 13.2 ns SDC) signed off at different clocks. That layout fails setup by −0.273 ns if checked at 13.2 ns, so the timing claims above hold only for the stated signoff clocks. Details in `docs/timing_analysis.md`.
 
 ## Design lineage (pre-layout synthesis, Yosys 0.33 + ABC, SKY130 HD tt_025C_1v80)
 
@@ -58,7 +61,6 @@ Synthesis and OpenLane flows need Yosys 0.33, OpenSTA, OpenLane 2.3.10 and the S
 * Golden digests for the 20-block power test were produced by this project's RTL simulation, then independently confirmed with a separate SHA-256 implementation during publication review.
 * Post-route area is about 1.9x synthesis area; the breakdown (timing-repair buffers, tap/fill, clock tree) has not been itemised here.
 * Die is 900x900 µm at 17.3% utilization, chosen to ease routing/timing, not to minimise area.
-* Parts of this project were developed with AI assistance.
 
 ## License
 MIT. See `LICENSE`.

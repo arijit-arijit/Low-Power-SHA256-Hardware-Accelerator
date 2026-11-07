@@ -23,8 +23,8 @@ VCD/ODB/SPEF files, raw run directories, `.git`, Blender files, duplicate images
 
 ## Remaining before publishing
 1. Run the prune command and confirm the repo size.
-2. Decide headline run: Z_13p50 (fastest, +0.027 ns) vs Z_13p60 (+0.127 ns).
-3. Confirm license, repo name and AI-assistance wording.
+2. Headline run decided: Z_13p60 primary (+0.127 ns), Z_13p50 as higher-throughput alternative.
+3. License (MIT, Arijit) and repo name: confirmed by owner.
 4. Optionally locate S2-vs-E2 evidence; otherwise leave `docs/optimization.md` as is.
 5. Nothing has been pushed.
 
