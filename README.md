@@ -107,6 +107,19 @@ make test
 
 The synthesis and physical-design flows require the corresponding EDA tools and SKY130 PDK. Refer to `docs/references/tool_versions.md` for tool versions.
 
+## Documentation
+
+For more details:
+
+- [Architecture](docs/architecture.md)
+- [RTL Design](docs/rtl_design.md)
+- [Verification](docs/verification.md)
+- [Synthesis](docs/synthesis.md)
+- [Timing Analysis](docs/timing_analysis.md)
+- [Physical Design](docs/physical_design.md)
+- [Power Analysis](docs/power_analysis.md)
+- [Optimization](docs/optimization.md)
+
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE).
