@@ -7,11 +7,11 @@ The project explores RTL optimization, verification and ASIC implementation usin
 ## Chip Layout
 
 <p align="center">
-  <img src="images/chip_render/elevated.png" width="80%" alt="3D render of the SHA-256 accelerator">
+  <img src="images/chip_render/elevated2.png" width="75%" alt="3D SHA-256 ASIC render">
 </p>
 
 <p align="center">
-  <img src="images/physical_design/Z_13p60_2d_full.png" width="80%" alt="2D physical layout of the SHA-256 accelerator">
+  <img src="images/physical_design/Z_13p60_2d_metals.png" width="75%" alt="SHA-256 ASIC metal routing layout">
 </p>
 
 ## Architecture
