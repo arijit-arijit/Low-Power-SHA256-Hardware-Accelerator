@@ -13,7 +13,7 @@ Stages completed for `Z_13p50/60/70` (same layout): floorplan, power grid, place
 | OpenROAD database (ODB) | `749b444230c15b3c6f7df34e1fbb791b21666aed7e4317ceca172571da9f840b` |
 | DEF | `ec7e32eb8c6688130c5d2d24d5465381a8ec9a0f6a14552abc3c3259fc882570` |
 
-The stream-out **GDS files are not byte-identical** across the runs (their SHA-256 values differ). Because the netlist, ODB and DEF are identical, the difference is expected to be stream-out metadata such as timestamps, but this has **not** been verified. `physical_design/final_layout/` holds the Z_13p50 GDS. To verify, compare the geometry with KLayout (`strmcmp run_a.gds run_b.gds`) and record the result here.
+The stream-out **GDS files are not byte-identical** across the runs (their SHA-256 values differ). Layout equivalence was checked separately with KLayout `strmcmp --terse`: Z_13p50 against Z_13p60, and Z_13p50 against Z_13p70, using the Magic stream-out GDS files. Both comparisons exited with code 0, meaning no layout differences were reported. So the GDS files are equivalent according to `strmcmp` but not byte-identical; the byte differences are not explained by that check, and the exact cause (for example stream-out metadata) has not been established. `physical_design/final_layout/` holds the Z_13p50 GDS. The `strmcmp` results were recorded by the project owner and the comparison output was not saved as a log in this repository.
 
 | Metric (Z_13p50) | Value |
 |---|---|
