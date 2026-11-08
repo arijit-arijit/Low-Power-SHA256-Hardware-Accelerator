@@ -1,17 +1,17 @@
 # Low-Power SHA-256 Hardware Accelerator
 
-A hardware implementation of the SHA-256 compression algorithm using SystemVerilog, followed by synthesis, timing analysis and physical design using the SKY130 technology.
+A hardware implementation of the SHA-256 compression algorithm using Verilog and SystemVerilog, followed by synthesis, timing analysis and physical design using the SKY130 technology.
 
 The project explores RTL optimization, verification and ASIC implementation using an open-source EDA toolchain.
 
 ## Chip Layout
 
 <p align="center">
-  <img src="images/chip_render/elevated.png" width="80%" alt="3D render of the SHA-256 accelerator">
+  <img src="images/chip_render/elevated.png" width="75%" alt="3D SHA-256 chip render">
 </p>
 
 <p align="center">
-  <img src="images/physical_design/Z_13p60_2d_full.png" width="80%" alt="2D physical layout of the SHA-256 accelerator">
+  <img src="images/physical_design/Z_13p60_2d_zoom.png" width="75%" alt="SHA-256 physical layout close-up">
 </p>
 
 ## Architecture
@@ -52,7 +52,9 @@ The reported throughput is approximately 561.9 Mbit/s for Z_13p60.
 
 The timing results are specific to their stated signoff constraints. The implemented layout has a reported negative setup slack of approximately -0.273 ns when checked at its 13.2 ns implementation constraint.
 
-Power values are simulation-based estimates, not measurements from fabricated silicon.
+Power values are simulation-based estimates (post-route netlist, 20 blocks, zero-delay gate-level simulation, OpenSTA with nominal SPEF at tt / 1.8 V / 25 °C), not measurements from fabricated silicon.
+
+Synthesis-stage results (Yosys/ABC) are tabulated in [`results/ppa_comparison.csv`](results/ppa_comparison.csv). They are pre-layout estimates and must not be compared directly with the post-route numbers above.
 
 ## Verification
 
@@ -68,9 +70,18 @@ Verification includes:
 
 The final gate-level check matched 20 out of 20 tested block digests against independently recomputed SHA-256 results.
 
+## Limitations
+
+- Block-level core only: no message padding, no multi-block sequencing, no initial-hash selection in hardware.
+- Power was measured in simulation for one workload and one corner; no baseline-versus-final power comparison exists.
+- The final design's ABC delay estimate is slower than the intermediate design C; see [Optimization](docs/optimization.md).
+- Large die (900 x 900 µm, 17.3% utilization) chosen for routability, not area.
+
+Full list: [Limitations](docs/limitations.md).
+
 ## Tools Used
 
-- SystemVerilog
+- verilog/SystemVerilog
 - Icarus Verilog
 - Yosys
 - ABC
@@ -101,11 +112,29 @@ scripts/            Utility scripts
 From the project root:
 
 ```bash
-cd verification/scripts
-make test
+bash scripts/run_all_tests.sh
 ```
 
+This needs `make`, `gcc`, `iverilog` and `verilator`. It builds a temporary workspace around the original Makefile, runs the C reference check, Verilator lint, and every testbench, and writes a log to `verification/results/`.
+
+Final layout files (GDS, DEF, LEF) are in `physical_design/final_layout/`; they come from run `Z_13p50`, whose netlist, OpenROAD database and DEF are byte-identical to those of `Z_13p60` and `Z_13p70` (see [Physical Design](docs/physical_design.md)).
+
 The synthesis and physical-design flows require the corresponding EDA tools and SKY130 PDK. Refer to `docs/references/tool_versions.md` for tool versions.
+
+## Documentation
+
+For more details:
+
+- [Architecture](docs/architecture.md)
+- [RTL Design](docs/rtl_design.md)
+- [Verification](docs/verification.md)
+- [Synthesis](docs/synthesis.md)
+- [Timing Analysis](docs/timing_analysis.md)
+- [Physical Design](docs/physical_design.md)
+- [Power Analysis](docs/power_analysis.md)
+- [Optimization](docs/optimization.md)
+- [Limitations](docs/limitations.md)
+- [Tool versions](docs/references/tool_versions.md)
 
 ## License
 

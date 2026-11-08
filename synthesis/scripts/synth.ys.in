@@ -1,0 +1,22 @@
+# Yosys script template. `make synth` replaces @CLK_PS@ / @LIB@ and writes build/synth.ys.
+# Paths are relative to the repository root.
+
+# Declare the SKY130 cells to Yosys (pin directions) and honour the dont_use attributes
+read_liberty -overwrite -setattr liberty_cell -lib @LIB@
+
+read_verilog -sv rtl/sha256_round.sv rtl/sha256_k_rom.sv rtl/sha256_msg_sched.sv rtl/sha256_ctrl.sv rtl/prefix_add32.sv rtl/sha256_core.sv
+hierarchy -check -top sha256_core
+
+# 1) Generic synthesis: technology-independent gates ($_AND_, $_XOR_, $_DFFE_PP_ ...)
+synth -top sha256_core -flatten
+tee -o synth/reports/stat_generic.rpt stat
+
+# 2) Technology mapping to SKY130 HD: flops first, then combinational logic through ABC
+dfflibmap -liberty @LIB@
+opt
+abc -liberty @LIB@ -constr synth/abc.constr -D @CLK_PS@
+opt_clean -purge
+tee -o synth/reports/stat_sky130.rpt stat -liberty @LIB@
+check -assert
+
+write_verilog -noattr -noexpr build/sha256_core_netlist.v

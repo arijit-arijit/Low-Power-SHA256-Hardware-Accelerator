@@ -1,5 +1,4 @@
-stage,design,area_um2,basis,note
-synthesis_A,A,67457.1968,Yosys+ABC SKY130 HD tt_025C_1v80 chip area,pre-layout
-synthesis_C,C,71343.4240,same,pre-layout
-synthesis_E2,E2,71715.0304,same,pre-layout
-post_route_Z,E2,134637,OpenLane design__instance__area__stdcell,post-route; includes timing repair buffers/taps/etc. Breakdown UNVERIFIED
+run,stdcell_area_um2,die_area_um2,core_area_um2,sequential_cells,hold_buffers,timing_repair_buffers,clock_buffers,clock_inverters,tap_cells,antenna_diode_cells_inserted,antenna_violating_nets,utilization_fraction,source
+Z_13p50,134637,810000,778377,1322,235,1349,377,147,11016,2,0,0.172971,Z_13p50/final/metrics.csv (OpenLane 2.3.10)
+Z_13p60,134637,810000,778377,1322,235,1349,377,147,11016,2,0,0.172971,Z_13p60/final/metrics.csv (OpenLane 2.3.10)
+Z_13p70,134637,810000,778377,1322,235,1349,377,147,11016,2,0,0.172971,Z_13p70/final/metrics.csv (OpenLane 2.3.10)

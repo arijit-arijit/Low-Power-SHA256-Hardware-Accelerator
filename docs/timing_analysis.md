@@ -12,6 +12,6 @@
 
 ![slack](../images/timing/setup_slack_by_signoff_clock.png)
 
-The three Z runs are **one layout** implemented with a 13.2 ns SDC and signed off against 13.5/13.6/13.7 ns. U1 re-checks that layout at 13.2 ns: 0.0274 − 0.3 = −0.273 ns, which accounts for the earlier independent OpenSTA "−0.27 ns max_ss" observation. The original log/SDC that printed that figure were not recovered (the `chk_signoff.tcl` on disk is not the version that produced it) -> the arithmetic reconciles, but the original print is UNVERIFIED.
+The three Z runs share an identical final netlist, ODB and DEF (see `physical_design.md` for the hashes), so they are **one layout** implemented with a 13.2 ns SDC and signed off against 13.5/13.6/13.7 ns. U1 re-checks that layout at 13.2 ns: 0.0274 − 0.3 = −0.273 ns, which accounts for the earlier independent OpenSTA "−0.27 ns max_ss" observation. The original log/SDC that printed that figure were not recovered (the `chk_signoff.tcl` on disk is not the version that produced it) -> the arithmetic reconciles, but the original print is UNVERIFIED.
 
 Clock skew (worst, from metrics): up to ~0.77 ns at max_ss. IR drop worst 3.9 mV.

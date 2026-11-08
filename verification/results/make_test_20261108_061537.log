@@ -1,0 +1,108 @@
+gcc -std=c99 -Wall -Wextra -O2 -o ref/sha256_ref ref/sha256_ref.c -lm
+./ref/sha256_ref
+== empty (len=0 bytes, 1 block)
+block0 = 80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+state after block0 = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+digest = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+== abc (len=3 bytes, 1 block)
+block0 = 61626380000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000018
+state after block0 = ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+digest = ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+== 448-bit two-block message (len=56 bytes, 2 blocks)
+block0 = 6162636462636465636465666465666765666768666768696768696a68696a6b696a6b6c6a6b6c6d6b6c6d6e6c6d6e6f6d6e6f706e6f70718000000000000000
+state after block0 = 85e655d6417a17953363376a624cde5c76e09589cac5f811cc4b32c1f20e533a
+block1 = 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c0
+state after block1 = 248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1
+digest = 248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1
+
+check_ref PASS len=3
+check_ref PASS len=0
+check_ref PASS len=11
+check_ref PASS len=56
+check_ref PASS len=55
+check_ref PASS len=64
+check_ref PASS len=119
+verilator --lint-only -Wall rtl/prefix_add32.sv
+verilator --lint-only -Wall rtl/sha256_ctrl.sv
+verilator --lint-only -Wall rtl/sha256_k_rom.sv
+verilator --lint-only -Wall rtl/sha256_msg_sched.sv
+verilator --lint-only -Wall rtl/sha256_round.sv
+verilator --lint-only -Wall --top-module sha256_core rtl/sha256_round.sv rtl/sha256_k_rom.sv rtl/sha256_msg_sched.sv rtl/sha256_ctrl.sv rtl/prefix_add32.sv rtl/sha256_core.sv
+mkdir -p build
+iverilog -g2012 -Wall -Wno-timescale -o build/tb_sha256_round.vvp rtl/prefix_add32.sv rtl/sha256_round.sv tb/tb_sha256_round.sv
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+vvp build/tb_sha256_round.vvp | tee build/tb_sha256_round.log
+PASS abc round 0
+PASS abc round 1
+PASS abc round 0 repeated
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_round.sv:50: $finish called at 3000 (1ps)
+mkdir -p build
+./ref/sha256_ref -k > build/k_expected.hex
+K table check passed: 64/64 constants match the cube-root definition
+iverilog -g2012 -Wall -Wno-timescale -o build/tb_sha256_k_rom.vvp rtl/sha256_k_rom.sv tb/tb_sha256_k_rom.sv
+vvp build/tb_sha256_k_rom.vvp | tee build/tb_sha256_k_rom.log
+PASS all 64 constants, ascending order
+PASS all 64 constants, descending order
+PASS 256 random-order lookups
+PASS X in idx gives X on k
+checks run: 385
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_k_rom.sv:76: $finish called at 385000 (1ps)
+mkdir -p build
+./ref/sha256_ref -w > build/sched_vectors.txt
+iverilog -g2012 -Wall -Wno-timescale -o build/tb_sha256_msg_sched.vvp rtl/sha256_msg_sched.sv tb/tb_sha256_msg_sched.sv
+vvp build/tb_sha256_msg_sched.vvp | tee build/tb_sha256_msg_sched.log
+PASS vector 0 block equals hand-built padded "abc"
+PASS vector 0: W[0..63] all match
+PASS vector 1: W[0..63] all match
+PASS vector 2: W[0..63] all match
+PASS vector 3: W[0..63] all match
+PASS load beats advance when both are high
+PASS reload mid-block restarts at W[0]
+checks run: 406
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_msg_sched.sv:158: $finish called at 4436000 (1ps)
+mkdir -p build
+iverilog -g2012 -Wall -Wno-timescale -o build/tb_sha256_ctrl.vvp rtl/sha256_ctrl.sv tb/tb_sha256_ctrl.sv
+vvp build/tb_sha256_ctrl.vvp | tee build/tb_sha256_ctrl.log
+VCD info: dumpfile build/tb_sha256_ctrl.vcd opened for output.
+checks run: 777
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_ctrl.sv:247: $finish called at 7187000 (1ps)
+mkdir -p build
+./ref/sha256_ref -c > build/core_vectors.txt
+mkdir -p build
+iverilog -g2012 -Wall -Wno-timescale -o build/tb_sha256_core.vvp rtl/sha256_round.sv rtl/sha256_k_rom.sv rtl/sha256_msg_sched.sv rtl/sha256_ctrl.sv rtl/prefix_add32.sv rtl/sha256_core.sv tb/tb_sha256_core.sv
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+vvp build/tb_sha256_core.vvp | tee build/tb_sha256_core.log
+VCD info: dumpfile build/tb_sha256_core.vcd opened for output.
+PASS msg 0 (3 bytes, 1 block): ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+PASS msg 1 (0 bytes, 1 block): e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+PASS msg 2 (56 bytes, 2 blocks): 248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1
+PASS msg 3 (55 bytes, 1 block): 9f4390f8d30c2dd92ec9f095b65e2b9ae9b0a925a5258e241c9f1e910f734318
+PASS msg 4 (64 bytes, 2 blocks): ffe054fe7ae0cb6dc65c3af9b61d5209f439851db43d0ba5997337df154668eb
+PASS msg 5 (119 bytes, 2 blocks): 31eba51c313a5c08226adf18d4a359cfdfd8d2e816b13f4af952f7ea6584dcfb
+PASS start pulses while busy / in done cycle are ignored
+PASS reset aborts a block; core then computes a correct digest
+checks run: 751
+TB_RESULT: PASS (all checks)
+tb/tb_sha256_core.sv:319: $finish called at 7937000 (1ps)
+mkdir -p build
+iverilog -g2012 -Wall -Wno-timescale -o build/tb_prefix_add32.vvp rtl/prefix_add32.sv tb/tb_prefix_add32.sv
+rtl/prefix_add32.sv:11: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+vvp build/tb_prefix_add32.vvp | tee build/tb_prefix_add32.log
+PASS: prefix_add32, 200000 random vectors plus directed cases
+tb/tb_prefix_add32.sv:63: $finish called at 200006000 (1ps)
