@@ -2,7 +2,7 @@
 
 A hardware implementation of the SHA-256 compression algorithm using Verilog and SystemVerilog, followed by synthesis, timing analysis and physical design using the SKY130 technology.
 
-The project explores RTL optimization, verification and ASIC implementation using an open-source EDA toolchain.
+The project explores RTL optimization, verification and ASIC implementation using an open-source EDA toolchain. A low-power implementation was an original design objective; however, the completed work does not demonstrate lower power than a baseline or alternative design.
 
 ## Chip Layout
 
@@ -29,7 +29,24 @@ Main RTL modules:
 
 The core accepts a pre-padded 512-bit message block and a 256-bit initial chaining value. Message padding and block sequencing are handled externally.
 
-## Implementation Results
+![Architecture](images/architecture/top_level_architecture.png)
+
+Module hierarchy: [images/rtl/module_hierarchy.png](images/rtl/module_hierarchy.png). Latency is 67 clock cycles per 512-bit block.
+
+## Synthesis Results (pre-layout, Yosys 0.33 + ABC, SKY130 HD)
+
+| Design | Change | Area (µm²) | ABC delay estimate |
+|---|---|---:|---:|
+| A | Baseline | 67,457 | 11,884 ps |
+| B | Carry-save adders | 71,316 | 10,058 ps |
+| C | + prefix adder in digest accumulation | 71,343 | 9,091 ps |
+| E2 (final RTL) | + prefix adders in the round | 71,715 | 9,972 ps |
+
+A to C reduces the ABC delay estimate by 23.5% for 5.8% more area. These are synthesis estimates, not static timing analysis. E2 is the RTL that was taken through physical design; its ABC estimate is slower than C's (see [Optimization](docs/optimization.md)).
+
+![Synthesis comparison](images/synthesis/synthesis_comparison.png)
+
+## Implementation Results (post-route)
 
 The design was synthesized using Yosys and ABC and taken through the OpenLane 2 physical-design flow using the SKY130 HD library.
 
@@ -50,15 +67,19 @@ Z_13p60 is the primary candidate because it has a larger setup margin. Z_13p50 p
 
 The reported throughput is approximately 561.9 Mbit/s for Z_13p60.
 
+![Setup slack](images/timing/setup_slack_by_signoff_clock.png)
+
 The timing results are specific to their stated signoff constraints. The implemented layout has a reported negative setup slack of approximately -0.273 ns when checked at its 13.2 ns implementation constraint.
 
-Power values are simulation-based estimates (post-route netlist, 20 blocks, zero-delay gate-level simulation, OpenSTA with nominal SPEF at tt / 1.8 V / 25 °C), not measurements from fabricated silicon.
+Power values are simulation-based estimates (post-route netlist, 20 blocks, zero-delay gate-level simulation, OpenSTA with nominal SPEF at tt / 1.8 V / 25 °C), not measurements from fabricated silicon. The low-power objective was not conclusively achieved: no baseline power run was made, the estimate covers only one workload and one process corner, and the optimization campaign primarily evaluated timing and area rather than a controlled power-reduction strategy. The reported values therefore characterize this implementation; they do not establish a power improvement.
 
 Synthesis-stage results (Yosys/ABC) are tabulated in [`results/ppa_comparison.csv`](results/ppa_comparison.csv). They are pre-layout estimates and must not be compared directly with the post-route numbers above.
 
 ## Verification
 
-The design was tested using SystemVerilog testbenches and a C-based SHA-256 reference model.
+Test results from `make test` (saved in `verification/results/`): K-constant ROM 385 checks, message scheduler 406, controller 777, core 751, round unit test, and a 32-bit prefix adder with 200,000 random vectors, all PASS. Known-answer checks cover messages of 0, 3, 55, 56, 64 and 119 bytes (padded blocks supplied to the core), plus ignored start pulses and reset abort.
+
+The Verilog/SystemVerilog RTL was tested using SystemVerilog testbenches and a C-based SHA-256 reference model.
 
 Verification includes:
 
@@ -69,6 +90,14 @@ Verification includes:
 - Gate-level functional verification.
 
 The final gate-level check matched 20 out of 20 tested block digests against independently recomputed SHA-256 results.
+
+## Physical Design
+
+Stages completed: floorplan, placement, clock-tree synthesis, routing, STA at nine corners, Magic and KLayout DRC, Netgen LVS, GDS stream-out. Result: 0 DRC errors, 0 LVS errors, 0 antenna-violating nets, 0 slew and 0 capacitance violations. The die is 900 x 900 µm at 17.3% utilization.
+
+![Placement](images/physical_design/placement.png)
+
+More views: [full layout](images/physical_design/Z_13p60_2d_full.png), [routing layers](images/physical_design/Z_13p60_2d_metals.png). Data: [`results/`](results/).
 
 ## Limitations
 
@@ -81,7 +110,7 @@ Full list: [Limitations](docs/limitations.md).
 
 ## Tools Used
 
-- verilog/SystemVerilog
+- Verilog / SystemVerilog
 - Icarus Verilog
 - Yosys
 - ABC
@@ -92,19 +121,18 @@ Full list: [Limitations](docs/limitations.md).
 - Magic
 - Netgen
 - KLayout
-- GTKWave
 
 ## Repository Structure
 
 ```text
 rtl/              SystemVerilog source files
-verification/     Testbenches, vectors and reference model
-synthesis/        Synthesis scripts, reports and netlists
-physical_design/  OpenLane configurations and physical-design results
-results/          PPA comparison and final results
-images/            Architecture and chip layout images
-docs/               Project documentation
-scripts/            Utility scripts
+verification/     Testbenches, vectors, reference model, logs
+synthesis/        Synthesis scripts, constraints, reports, netlist
+physical_design/  OpenLane configs, reports, final GDS/DEF/LEF
+results/          PPA, timing, power and area CSV files, final_results.md
+images/           Architecture, synthesis, timing, layout and render images
+docs/             Project documentation
+scripts/          Utility scripts
 ```
 
 ## Running Verification

@@ -4,3 +4,5 @@
 *.gds binary
 *.png binary
 *.jpg binary
+synthesis/netlists/** linguist-generated
+physical_design/final_layout/*.def linguist-generated

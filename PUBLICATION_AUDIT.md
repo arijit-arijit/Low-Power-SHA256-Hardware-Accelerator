@@ -20,7 +20,7 @@ Status: the repository is public on GitHub (default branch `main`) and contains 
 
 ## Known limitations
 - Block-level core only: no padding, multi-block control or IV selection.
-- Power is simulation-based (zero-delay, one workload, one corner) and no baseline power was measured; the design is not claimed to be lower power than any alternative.
+- Low power was an original design objective, but lower power was not demonstrated. Power is simulation-based (zero-delay, one workload, one corner), no baseline power was measured, and the optimization campaign primarily evaluated timing and area rather than a controlled power-reduction strategy. The reported power characterizes this implementation only; it does not establish an improvement over an alternative.
 - The Z_13p50 setup margin is 0.027 ns. The layout fails at its 13.2 ns implementation clock (-0.273 ns).
 - Post-route area is about 1.9x synthesis area and has not been itemised; `design__instance__count__class:antenna_cell = 10255` in the metrics is unexplained and unused.
 - No pre-route STA exists for the final RTL (E2).
@@ -28,7 +28,7 @@ Status: the repository is public on GitHub (default branch `main`) and contains 
 - No formal verification or coverage closure.
 
 ## Missing deliverables
-- `images/physical_design/floorplan.png` and `placement.png` (not generated yet).
+- `images/physical_design/floorplan.png`: not included. The early floorplan database shows only the die boundary, so it adds no information. `placement.png` (Z_13p50 detailed placement) is included.
 - Original log that printed the -0.27 ns figure.
 
 ## Not done / not claimed
