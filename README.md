@@ -4,6 +4,8 @@ A hardware implementation of the SHA-256 compression algorithm using **Verilog a
 
 Low power was an original design objective. However, the completed work does not demonstrate lower power compared with a baseline or alternative implementation.
 
+SHA-256 is a cryptographic hash function. It turns any input into a fixed 256-bit fingerprint, and it’s used in digital signatures, blockchains, password storage and file integrity checks. It processes data in 512-bit blocks, and each block takes 64 rounds of mixing, which is slow in software and a good fit for dedicated hardware.
+
 ## Chip Layout
 
 <p align="center">
