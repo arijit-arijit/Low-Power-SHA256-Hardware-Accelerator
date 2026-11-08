@@ -1,4 +1,4 @@
-run,stdcell_area_um2,die_area_um2,core_area_um2,sequential_cells,hold_buffers,timing_repair_buffers,clock_buffers,clock_inverters,tap_cells,antenna_diode_cells_inserted,antenna_violating_nets,utilization_fraction,source
-Z_13p50,134637,810000,778377,1322,235,1349,377,147,11016,2,0,0.172971,Z_13p50/final/metrics.csv (OpenLane 2.3.10)
-Z_13p60,134637,810000,778377,1322,235,1349,377,147,11016,2,0,0.172971,Z_13p60/final/metrics.csv (OpenLane 2.3.10)
-Z_13p70,134637,810000,778377,1322,235,1349,377,147,11016,2,0,0.172971,Z_13p70/final/metrics.csv (OpenLane 2.3.10)
+run,stdcell_area_um2,die_area_um2,core_area_um2,sequential_cells,hold_buffers,timing_repair_buffers,clock_buffers,clock_inverters,tap_cells,antenna_diode_cells_total,antenna_diode_area_um2_computed,antenna_violating_nets,utilization_fraction,source
+Z_13p50,134637,810000,778377,1322,235,1349,377,147,11016,10255,25662.1,0,0.172971,Z_13p50/final/metrics.csv (OpenLane 2.3.10)
+Z_13p60,134637,810000,778377,1322,235,1349,377,147,11016,10255,25662.1,0,0.172971,Z_13p60/final/metrics.csv (OpenLane 2.3.10)
+Z_13p70,134637,810000,778377,1322,235,1349,377,147,11016,10255,25662.1,0,0.172971,Z_13p70/final/metrics.csv (OpenLane 2.3.10)

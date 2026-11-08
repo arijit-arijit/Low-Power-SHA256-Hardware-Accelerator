@@ -24,12 +24,12 @@ The stream-out **GDS files are not byte-identical** across the runs (their SHA-2
 | Route DRC / Magic DRC / KLayout DRC | 0 / 0 / 0 |
 | LVS errors | 0 |
 | Antenna violating nets | 0 |
-| Antenna diode cells inserted (`antenna_diodes_count`) | 2 (a count of inserted cells, a different metric from violating nets) |
+| Antenna diode cells (`sky130_fd_sc_hd__diode_2`) | 10,255 total, of which 8,453 inserted by the heuristic diode pass (`search13_report.txt`); a different metric from violating nets. The metrics key `antenna_diodes_count = 2` is not used |
 | Hold buffers / timing-repair buffers / clock buffers | 235 / 1,349 / 377 |
 | Sequential cells | 1,322 |
 | Die / core area | 810,000 / 778,377 µm² |
 | Slew / cap violations | 0 / 0 |
 
-Note: the metrics file also reports `design__instance__count__class:antenna_cell = 10255`. That does not match the 2 inserted diodes and its meaning has not been established, so it is not used anywhere in this repository.
+Area note: at 2.5024 µm² per `diode_2` (from `search13_report.txt`), the 10,255 antenna diodes account for about 25,662 µm², roughly 19% of the 134,637 µm² standard-cell area. The 235 hold-repair cells (10.0096 µm² each) account for about 2,352 µm² (1.7%). These are arithmetic from the recorded per-cell areas; the rest of the growth over the 71,715 µm² synthesis area (timing-repair and clock buffers, tap cells) has not been itemised.
 
 Layout images: `images/physical_design/`, `images/chip_render/` (3D renders are visualizations, not signoff artifacts).
