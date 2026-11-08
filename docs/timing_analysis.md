@@ -1,5 +1,13 @@
 # Timing analysis
-**Pre-layout:** `m4_comparison/sta_*` hold OpenSTA runs of designs A/B/C at a 10 ns clock. No pre-route STA for E2 was found -> UNVERIFIED.
+**Pre-layout (synthesis netlists, OpenSTA, tt_025C_1v80, no wires).** Constraints in `synthesis/constraints/sha256_core.sdc`: 10 ns clock, 0.25 ns uncertainty, 2 ns input and output delays (assumed values, not from a real system). Reports are under `synthesis/reports/optimized/m4_comparison/`.
+
+| Design | Worst slack at 10 ns | TNS |
+|---|---|---|
+| A (pre-CSA) | -2.80 ns | -45.42 ns |
+| B (CSA) | -0.71 ns | -9.10 ns |
+| C (CSA + prefix digest adder) | +0.25 ns | 0.00 ns |
+
+No pre-route STA for the final design E2 is in the repository -> UNVERIFIED. These pre-layout numbers must not be compared with the post-route table below.
 
 **Post-route (OpenLane, 9 corners: nom/min/max x tt/ss/ff).** Limiting setup corner `max_ss_100C_1v60`; limiting hold corner `min_ff_n40C_1v95`.
 

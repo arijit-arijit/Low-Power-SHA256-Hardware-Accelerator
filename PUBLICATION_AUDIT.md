@@ -13,7 +13,7 @@ Status: the repository is public on GitHub (default branch `main`) and contains 
 | Z_13p50: setup +0.027 ns, hold +0.050 ns | VERIFIED | same |
 | DRC / LVS / antenna / slew / cap | VERIFIED: all 0 | `metrics.csv`; zero antenna violations was reached with 10,255 `diode_2` cells (8,453 from the heuristic pass) |
 | Power 16.8 / 16.9 mW | VERIFIED as simulation-based | `power.rpt`, `pw_sim.log` |
-| 20-block gate-level run | VERIFIED | `pw_sim.log`: PASS, 67 cycles/block; digests also recomputed independently |
+| 20-block gate-level run | VERIFIED | `pw_sim.log`: PASS, 67 cycles/block; digests recomputed independently by `check_golden.c` |
 | RTL unit and core tests | VERIFIED | `verification/results/functional_logs/` and `make_test_*.log` |
 | Z runs are one physical implementation | VERIFIED | identical netlist, ODB and DEF SHA-256; GDS equivalent under `strmcmp`, not byte-identical |
 | -0.27 ns max_ss discrepancy | EXPLAINED | same layout checked at the 13.2 ns implementation SDC: 0.0274 - 0.3 = -0.273 ns; the original log was not recovered |
@@ -24,7 +24,7 @@ Status: the repository is public on GitHub (default branch `main`) and contains 
 - The Z_13p50 setup margin is 0.027 ns. The layout fails at its 13.2 ns implementation clock (-0.273 ns).
 - Post-route area is about 1.9x synthesis area. The 10,255 antenna diodes are about 19% of it (see `docs/physical_design.md`); the remainder is only partly itemised. Zero antenna violations was bought with area.
 - No pre-route STA exists for the final RTL (E2).
-- Golden digests for the gate-level test were produced by this project's RTL simulation, then independently recomputed once.
+- Golden digests for the gate-level test were produced by this project's RTL simulation, then independently recomputed with `verification/reference_model/check_golden.c`.
 - No formal verification or coverage closure.
 
 ## Missing deliverables
